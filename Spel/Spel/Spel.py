@@ -1,6 +1,8 @@
 ﻿import os, sys
 import pygame
 from pygame.locals import *
+from Player import *
+from Tile import *
 
 gamename = "Frequency"
 window_height = 900
@@ -22,25 +24,26 @@ def drawboard():
     swampImg = pygame.image.load("textures/swamp.png")
     goldImg = pygame.image.load("textures/gold.png")
 
-    mapArray = [
-        ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
-        ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
-        ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
-        ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
-        ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
-        ["s","s","s","s","s","s","w","w","w","w","w","w","i","i","i","i","i","i"],
-        ["s","s","s","s","s","w","w","w","w","w","w","w","w","i","i","i","i","i"],
-        ["w","w","w","w","w","w","w","g","g","g","g","w","w","w","w","w","w","w"],
-        ["w","w","w","w","w","w","w","g","g","g","g","w","w","w","w","w","w","w"],
-        ["w","w","w","w","w","w","w","g","g","g","g","w","w","w","w","w","w","w"],
-        ["w","w","w","w","w","w","w","g","g","g","g","w","w","w","w","w","w","w"],
-        ["d","d","d","d","d","w","w","w","w","w","w","w","w","f","f","f","f","f"],
-        ["d","d","d","d","d","d","w","w","w","w","w","w","f","f","f","f","f","f"],
-        ["d","d","d","d","d","d","d","w","w","w","w","f","f","f","f","f","f","f"],
-        ["d","d","d","d","d","d","d","w","w","w","w","f","f","f","f","f","f","f"],
-        ["d","d","d","d","d","d","d","w","w","w","w","f","f","f","f","f","f","f"],
-        ["d","d","d","d","d","d","d","w","w","w","w","f","f","f","f","f","f","f"],
-        ["d","d","d","d","d","d","d","w","w","w","w","f","f","f","f","f","f","f"] ]
+    mapArray = [    #later, change so that it stores a tile entity
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("s"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("i"), Tile("i"), Tile("i"), Tile("i"), Tile("i")],
+        [Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("g"), Tile("g"), Tile("g"), Tile("g"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w")],
+        [Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("g"), Tile("g"), Tile("g"), Tile("g"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w")],
+        [Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("g"), Tile("g"), Tile("g"), Tile("g"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w")],
+        [Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("g"), Tile("g"), Tile("g"), Tile("g"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")],
+        [Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("d"), Tile("w"), Tile("w"), Tile("w"), Tile("w"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f"), Tile("f")] ]
+
 
     for x in range(18):
         for y in range(18):
@@ -70,7 +73,12 @@ def drawMouseHover():
     
     img = pygame.image.load("textures/white_border.png").convert()
     img.set_colorkey((255,0,255))
-    setDisplay.blit(img, (posx, posy))    
+    setDisplay.blit(img, (posx, posy))
+    
+def PlayerCreation(Pamount):
+    playerlist = []
+    for i in range(Pamount):
+        newplayer = Player(newname) #later on, ask for name of player
 
 while True:
     drawboard()

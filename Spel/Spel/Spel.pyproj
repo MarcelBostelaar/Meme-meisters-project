@@ -25,6 +25,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Tile.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Player.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Spel.py" />
   </ItemGroup>
   <ItemGroup>
