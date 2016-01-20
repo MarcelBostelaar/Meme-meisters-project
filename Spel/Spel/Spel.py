@@ -22,8 +22,6 @@ def drawboard():
     swampImg = pygame.image.load("textures/swamp.png")
     goldImg = pygame.image.load("textures/gold.png")
 
-    #mapArray = [[0 for x in range(18)]for y in range(18)]
-
     mapArray = [
         ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
         ["s","s","s","s","s","s","s","w","w","w","w","i","i","i","i","i","i","i"],
