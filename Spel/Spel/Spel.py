@@ -47,17 +47,17 @@ def drawboard():
 
     for x in range(18):
         for y in range(18):
-            if mapArray[x][y] == "s":
+            if mapArray[x][y].biome == "s":
                   setDisplay.blit(swampImg, (x*50, y*50))
-            elif mapArray[x][y] == "i":
+            elif mapArray[x][y].biome == "i":
                   setDisplay.blit(iceImg, (x*50, y*50))
-            elif mapArray[x][y] == "d":
+            elif mapArray[x][y].biome == "d":
                   setDisplay.blit(desertImg, (x*50, y*50))
-            elif mapArray[x][y] == "f":
+            elif mapArray[x][y].biome == "f":
                   setDisplay.blit(forestImg, (x*50, y*50))
-            elif mapArray[x][y] == "w":
+            elif mapArray[x][y].biome == "w":
                   setDisplay.blit(waterImg, (x*50, y*50))
-            elif mapArray[x][y] == "g":
+            elif mapArray[x][y].biome == "g":
                   setDisplay.blit(goldImg, (x*50, y*50))
     
     img = pygame.image.load("textures/black_border.png").convert()
