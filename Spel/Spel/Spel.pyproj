@@ -28,6 +28,12 @@
     <Compile Include="ButtonClass.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EscMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tile.py">
       <SubType>Code</SubType>
     </Compile>

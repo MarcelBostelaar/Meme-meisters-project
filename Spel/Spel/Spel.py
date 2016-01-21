@@ -5,6 +5,8 @@ from pygame.locals import *
 from Player import *
 from Tile import *
 from ButtonClass import *
+from EscMenu import *
+import config
 
 gamename = "Frequency"
 window_height = 900
@@ -13,7 +15,7 @@ window_width = 1300
 Gameboard_offsetx = 125
 Gameboard_offsety = 0
 
-fps = 60
+fps = 30
 fpsTime = pygame.time.Clock()
 
 pygame.init()
@@ -120,33 +122,39 @@ def PlayerCreation(Pamount):
 PlayerCreation(3)
 
 while True:
-    drawboard()
-    drawitems()
-    drawMouseHover()
+    
+    if config.window == "Main":
+        drawboard()
+        drawitems()
+        drawMouseHover()
+
+    if config.window == "Esc_Menu":
+        Escape_Menu_Draw((200,200), setDisplay)
+        EscM_detect_presses()
 
     for event in pygame.event.get():
-        #print(event)
+        print(event)
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
         if event.type == KEYDOWN:
-            print("keydown")
+            if event.key == pygame.K_ESCAPE:
+                if config.window == "Main":
+                    config.window = "Esc_Menu"
+                    print("window opened")
+                elif config.window == "Esc_Menu":
+                    config.window = "Main"
+                    print("window closed")
+
         if event.type == MOUSEBUTTONDOWN:
             stateMouse = pygame.mouse.get_pressed()
             if stateMouse[0] == 1:
-                if lol.pressed():
-                    print("gold!")
-                if kek.pressed():
-                    print("Test!")
+                print("")
+                #if lol.pressed():
+                 #   print("gold!")
+                #if kek.pressed():
+                 #   print("Test!")
                 
-            
-
-
-
-    lol = Button("Gold", (0,255,255), font_size = 30, texture = "textures/gold.png")
-    kek = Button("test", (255,0,255), font_size = 232, height = 523, width = 800, bgcolor = (200,65,45))
-    kek.draw(52+Gameboard_offsetx,96+Gameboard_offsety, setDisplay)
-    lol.draw(420+Gameboard_offsetx,0+Gameboard_offsety, setDisplay)
 
     pygame.display.update()
     fpsTime.tick(fps)
