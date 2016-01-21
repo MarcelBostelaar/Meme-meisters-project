@@ -25,6 +25,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ButtonClass.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tile.py">
       <SubType>Code</SubType>
     </Compile>
