@@ -43,7 +43,7 @@ def drawitems():
     for x in range(18):
         for y in range(18):
             if mapArray[x][y].owner != None:
-                setDisplay.blit(Baseimg, (x*50, y*50))
+                setDisplay.blit(Baseimg, (x*50+1, y*50+1))
 
 
 
