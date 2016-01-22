@@ -1,4 +1,4 @@
-from ButtonClass import Button
+﻿from ButtonClass import Button
 import pygame
 import config
 
@@ -60,6 +60,7 @@ def Calculations():
         Line_Tile_Owner.text = ""
         Line_Tile_Troops.text = ""
         Line_Tile_Building.text = ""
+
 
 def Draw(pos):
     Calculations()
