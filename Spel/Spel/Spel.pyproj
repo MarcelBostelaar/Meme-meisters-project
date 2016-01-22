@@ -34,6 +34,12 @@
     <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Graphics_game.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Player_functions.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tile.py">
       <SubType>Code</SubType>
     </Compile>

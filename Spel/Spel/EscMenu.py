@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 from ButtonClass import *
 import config
 import os
@@ -36,6 +36,7 @@ def EscM_detect_presses():
                     pygame.quit()
                     sys.exit()
                 if Button4.pressed():
+                    print("Button 4 pressed")
                     config.window = "Main"
 
 
