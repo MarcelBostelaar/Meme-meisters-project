@@ -37,6 +37,9 @@
     <Compile Include="Graphics_game.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Units.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Player_functions.py">
       <SubType>Code</SubType>
     </Compile>
