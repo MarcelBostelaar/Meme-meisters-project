@@ -1,5 +1,7 @@
-import pygame
+﻿import pygame
 from config import *
+
+Background_color = (0,0,0)
 
 def drawitems():
     Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
@@ -10,6 +12,7 @@ def drawitems():
                 setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
 
 def drawboard():
+    setDisplay.fill(Background_color)
     waterImg = pygame.image.load("textures/water.png")
     forestImg = pygame.image.load("textures/forest.png")
     desertImg = pygame.image.load("textures/desert.png")

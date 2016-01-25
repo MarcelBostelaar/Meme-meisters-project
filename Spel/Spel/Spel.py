@@ -8,15 +8,13 @@ import EscMenu
 import config
 import Graphics_game
 import Player_functions
+import Debug_screen
 
 pygame.init()
 
 
-
- 
-
-
 Player_functions.PlayerCreation(3)
+
 
 while True:
     
@@ -24,6 +22,8 @@ while True:
         Graphics_game.drawboard()
         Graphics_game.drawitems()
         Graphics_game.drawMouseHover()
+        if config.debug == True:
+            Debug_screen.Draw((900,0))
 
         for event in pygame.event.get():
             print(event)
@@ -33,6 +33,8 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     config.window = "Esc_Menu"
+                if event.key == pygame.K_F3:
+                    config.debug = not config.debug
 
 
     if config.window == "Esc_Menu":
@@ -42,6 +44,6 @@ while True:
 
     
                 
-
+    
     pygame.display.update()
     config.fpsTime.tick(config.fps)

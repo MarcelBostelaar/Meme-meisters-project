@@ -6,3 +6,5 @@ Leden: Naam - student nummer - github username
 Marcel Bostelaar - 0917554 - ColoniseMars
 
 Jasper Jongeneel - 0889482 - JasperJongeneel
+
+Marco den Hollander - 0920854 - Bananeur

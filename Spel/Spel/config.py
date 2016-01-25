@@ -2,15 +2,16 @@
 import pygame
 
 window = "Main"
+debug=False
 
 gamename = "Frequency"
 window_height = 900
-window_width = 900
+window_width = 1300
 
 Gameboard_offsetx = 0
 Gameboard_offsety = 0
 
-fps = 30
+fps = 60
 fpsTime = pygame.time.Clock()
 
 mapArray = [
