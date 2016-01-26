@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>398f4b04-c709-48a8-b20c-c99f2b3c36f2</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Spel.py</StartupFile>
+    <StartupFile>MainMenu.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,6 +31,9 @@
     <Compile Include="Debug_screen.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EndingMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="EscMenu.py">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Graphics_game.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlayerMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlayerNameMenu.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Units.py">
