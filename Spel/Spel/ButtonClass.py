@@ -28,6 +28,7 @@ class Button():
 
         elif self.texture != None:                              #if there is a texture set
             texture = pygame.image.load(self.texture).convert()
+            texture.set_colorkey((255,0,255))
             screen.blit(texture, (posx, posy))
             sizeTexture = texture.get_rect().size
             self.texture_dim = sizeTexture
