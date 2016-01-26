@@ -1,24 +1,76 @@
 ﻿import pygame
 from config import *
+import ButtonClass
 
 Background_color = (0,0,0)
 
-def drawitems():
-    Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
-    Baseimg.set_colorkey((255,0,255))
+font_colour = (255,255,255)
+fontsize = 30
+
+end_turn_button = ButtonClass.Button("End Turn", font_colour, font_size=fontsize, width = 400, height = 75, bgcolor = (255,100,0))
+menu_button = ButtonClass.Button("Menu", font_colour, font_size=fontsize, width = 300, height = 75, bgcolor = (255,100,0))
+help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
+
+backgr = pygame.image.load("textures/parchment_texture.png")
+
+waterImg = pygame.image.load("textures/water.png")
+forestImg = pygame.image.load("textures/forest.png")
+desertImg = pygame.image.load("textures/desert.png")
+iceImg = pygame.image.load("textures/ice.png")
+swampImg = pygame.image.load("textures/swamp.png")
+goldImg = pygame.image.load("textures/gold.png")
+
+Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
+Baseimg.set_colorkey((255,0,255))
+
+black_border_img = pygame.image.load("textures/black_border.png").convert()
+black_border_img.set_colorkey((255,0,255))
+
+white_border_img = pygame.image.load("textures/white_border.png").convert()
+white_border_img.set_colorkey((255,0,255))
+
+logo = pygame.image.load("textures/logo.png").convert()
+logo.set_colorkey((255,0,255))
+
+def draw_everything():
+    draw_background()
+    draw_logo((1000, 50))
+    drawboard()
+    drawitems()
+    drawMouseHover()
+    draw_player_stats((1000, 360))
+    draw_bottom_buttons((1000, 875))
+
+def draw_bottom_buttons(pos):
+    menu_button.draw(pos[0], pos[1], setDisplay)
+    help_button.draw(pos[0] + 325, pos[1], setDisplay)
+
+
+def draw_logo(pos):
+    setDisplay.blit(logo, pos)
+
+def draw_player_stats(pos):     #also includes end of turn button draw
+    x=0
+    for i in Playerlist:
+        Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (0,0,0))
+        Money_text = ButtonClass.Button("ƒ " + str(i.money), font_colour, font_size=fontsize, width = 200, height = 25, bgcolor = (50,50,50))
+
+        Name_text.draw(pos[0], pos[1]+50*x, setDisplay)
+        Money_text.draw(pos[0]+200, pos[1]+50*x, setDisplay)
+        x+=1
+
+    end_turn_button.draw(pos[0], pos[1]+50*(x), setDisplay)
+
+
+def drawitems():        #draws units on field
     for x in range(18):
         for y in range(18):
             if mapArray[x][y].owner != None:
                 setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
 
 def drawboard():
-    setDisplay.fill(Background_color)
-    waterImg = pygame.image.load("textures/water.png")
-    forestImg = pygame.image.load("textures/forest.png")
-    desertImg = pygame.image.load("textures/desert.png")
-    iceImg = pygame.image.load("textures/ice.png")
-    swampImg = pygame.image.load("textures/swamp.png")
-    goldImg = pygame.image.load("textures/gold.png")
+    #setDisplay.fill(Background_color)
+
 
     for x in range(18):
         for y in range(18):
@@ -35,17 +87,25 @@ def drawboard():
             elif mapArray[x][y].biome == "g":
                   setDisplay.blit(goldImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
     
-    img = pygame.image.load("textures/black_border.png").convert()
-    img.set_colorkey((255,0,255))
     for x in range(18):
         for y in range(18):
-            setDisplay.blit(img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+            setDisplay.blit(black_border_img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
 
 def drawMouseHover():
     x = pygame.mouse.get_pos()
     posx = (x[0] - Gameboard_offsetx) - (x[0] - Gameboard_offsetx)%50 + Gameboard_offsetx
     posy = (x[1] - Gameboard_offsety) - (x[1] - Gameboard_offsety)%50 + Gameboard_offsety
     if posx >= Gameboard_offsetx and posx < Gameboard_offsetx + 900 and posy >= Gameboard_offsety and posy < Gameboard_offsety + 900:
-        img = pygame.image.load("textures/white_border.png").convert()
-        img.set_colorkey((255,0,255))
-        setDisplay.blit(img, (posx, posy))
+        setDisplay.blit(white_border_img, (posx, posy))
+
+def draw_background():
+    sizeTexture = backgr.get_rect().size
+    posx = 0
+    posy = 0
+    while posx<window_width:
+        while posy<window_height:
+            setDisplay.blit(backgr, (posx,posy))
+            posy += sizeTexture[1]
+        posx += sizeTexture[0]
+        posy = 0
+    #setDisplay.blit(backgr, (0,0))

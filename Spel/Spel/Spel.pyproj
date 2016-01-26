@@ -37,6 +37,9 @@
     <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Game_Logic.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Graphics_game.py">
       <SubType>Code</SubType>
     </Compile>

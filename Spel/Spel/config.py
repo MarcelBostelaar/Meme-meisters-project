@@ -5,11 +5,11 @@ window = "Main"
 debug=False
 
 gamename = "Frequency"
-window_height = 900
-window_width = 1300
+window_height = 1000
+window_width = 1500
 
-Gameboard_offsetx = 0
-Gameboard_offsety = 0
+Gameboard_offsetx = 50
+Gameboard_offsety = 50
 
 fps = 60
 fpsTime = pygame.time.Clock()
