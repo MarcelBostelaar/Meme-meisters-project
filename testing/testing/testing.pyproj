@@ -3,15 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>398f4b04-c709-48a8-b20c-c99f2b3c36f2</ProjectGuid>
+    <ProjectGuid>533101aa-8e18-4c03-bead-fb9da31f8722</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MainMenu.py</StartupFile>
+    <StartupFile>testing.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Spel</Name>
-    <RootNamespace>Spel</RootNamespace>
+    <Name>testing</Name>
+    <RootNamespace>testing</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
@@ -25,49 +25,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ButtonClass.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Debug_screen.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EndingMenu.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EscMenu.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="config.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Game_Logic.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Graphics_game.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MainMenu.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PlayerMenu.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PlayerNameMenu.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Units.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Player_functions.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Tile.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Player.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Spel.py" />
+    <Compile Include="testing.py" />
   </ItemGroup>
   <ItemGroup>
     <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />

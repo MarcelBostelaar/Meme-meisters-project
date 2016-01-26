@@ -42,7 +42,7 @@ def Calculations():
         
 
         if Tile_selected.owner != None:
-            Line_Tile_Owner.text = "Owner: " + str(Tile_selected.owner.name)
+            Line_Tile_Owner.text = "Owner: " + str(Tile_selected.owner)
         else:
             Line_Tile_Owner.text = "Owner: None"
         
