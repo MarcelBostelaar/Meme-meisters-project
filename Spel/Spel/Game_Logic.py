@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 import config
 import Graphics_game
 
@@ -9,6 +9,7 @@ def Mousedown():
             print("Ended turn")
         if Graphics_game.menu_button.pressed():
             config.window = "Esc_Menu"
+            config.firsttime = True
         if Graphics_game.help_button.pressed():
             print("Help button pressed")
 

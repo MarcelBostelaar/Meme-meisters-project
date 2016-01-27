@@ -47,7 +47,14 @@ def Calculations():
             Line_Tile_Owner.text = "Owner: None"
         
             
-        Line_Tile_Troops.text = "Troops: " + str(Tile_selected.troops)
+        if Tile_selected.troops != []:
+            string = ""
+            for i in Tile_selected.troops:
+                string += i.Name
+                string += ", "
+            Line_Tile_Troops.text = "Troops: " + string
+        else:
+            Line_Tile_Troops.text = "Troops: None"
 
 
         if Tile_selected.building != None:
@@ -66,6 +73,7 @@ def Draw(pos):
     Calculations()
     posx = pos[0]
     posy = pos[1]
+    pygame.draw.rect(config.setDisplay, (0,0,0), (pos[0], pos[1], 500, 200))
     Line_Title.draw(posx, posy, config.setDisplay)
     size = Line_Title.size()
     posy += size[1]
@@ -87,3 +95,4 @@ def Draw(pos):
     Line_Tile_Building.draw(posx+indentation, posy, config.setDisplay)
     size = Line_Tile_Building.size()
     posy += size[1]
+

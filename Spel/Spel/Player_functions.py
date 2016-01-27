@@ -31,4 +31,3 @@ def PlayerCreation(Plamount):
                     config.mapArray[17][17].owner = newplayer.name
                     biomepicked = True
         config.Playerlist.append(newplayer)
-    print (config.Playerlist)
