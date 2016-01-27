@@ -1,8 +1,10 @@
 ﻿from ButtonClass import Button
 import pygame
 import config
+import Turn_Order
 
 white = (255,255,255)
+cyan = (0,255,255)
 
 fontsize = 30
 
@@ -10,17 +12,18 @@ indentation = 20
 
 Line_Title = Button("Debug screen, press F3 to close", white, font_size =  fontsize)
 
-Line_mousepos = Button("", white, font_size =fontsize)
+Line_mousepos = Button("", white, font_size = fontsize)
 Line_Tile = Button("", white, font_size = fontsize)
 Line_Tile_Biome = Button("", white, font_size = fontsize)
 Line_Tile_Owner = Button("", white, font_size = fontsize)
 Line_Tile_Troops = Button("", white, font_size = fontsize)
 Line_Tile_Building = Button("", white, font_size = fontsize)
+Line_Active_Player = Button("", cyan, font_size = fontsize)
 
 def Calculations():
     mouseposition = pygame.mouse.get_pos()
     Line_mousepos.text = "Mouse position:" + str(mouseposition)
-
+    currentplayer = config.PlayerIndex
     current_tile = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))
     
     if current_tile[0] >= 0 and current_tile[1] >= 0 and current_tile[0] <=17 and current_tile[1] <= 17:
@@ -61,6 +64,12 @@ def Calculations():
             Line_Tile_Building.text = "Building: " + str(Tile_selected.building[0])
         else:
             Line_Tile_Building.text = "Building: None"
+
+        if Line_Active_Player.text != None:
+            Line_Active_Player.text = "Active Player: " + str(config.PlayerIndex + 1)
+        else:
+            Line_Active_Player.text = "Active Player: None"
+
     else:
         Line_Tile.text = "Tile: None"
         Line_Tile_Biome.text = ""
@@ -94,5 +103,8 @@ def Draw(pos):
     posy += size[1]
     Line_Tile_Building.draw(posx+indentation, posy, config.setDisplay)
     size = Line_Tile_Building.size()
+    posy += size[1]
+    Line_Active_Player.draw(posx+indentation, posy, config.setDisplay)
+    size = Line_Active_Player.size()
     posy += size[1]
 

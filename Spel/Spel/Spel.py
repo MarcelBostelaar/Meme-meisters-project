@@ -11,6 +11,7 @@ import Player_functions
 import Debug_screen
 import Game_Logic
 import Units
+import Turn_Order
 #import MainMenu
 
 pygame.init()
@@ -57,6 +58,8 @@ while True:
                 if event.key == pygame.K_F3:
                     config.debug = not config.debug
                     config.firsttime = True
+                if event.key == pygame.K_F4:
+                    Turn_Order.OrderMatrix(1)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Game_Logic.Mousedown()
 
