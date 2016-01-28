@@ -26,6 +26,23 @@ waterImg6 = pygame.image.load("textures/water6.png")
 waterImg7 = pygame.image.load("textures/water7.png")
 forestImg = pygame.image.load("textures/forest.png")
 desertImg = pygame.image.load("textures/desert.png")
+volcano1 = pygame.image.load("textures/volcano1.png")
+volcano2 = pygame.image.load("textures/volcano2.png")
+volcano3 = pygame.image.load("textures/volcano3.png")
+volcano4 = pygame.image.load("textures/volcano4.png")
+volcano5 = pygame.image.load("textures/volcano5.png")
+volcano6 = pygame.image.load("textures/volcano6.png")
+volcano7 = pygame.image.load("textures/volcano7.png")
+volcano8 = pygame.image.load("textures/volcano8.png")
+volcano9 = pygame.image.load("textures/volcano9.png")
+volcano10 = pygame.image.load("textures/volcano10.png")
+volcano11 = pygame.image.load("textures/volcano11.png")
+volcano12 = pygame.image.load("textures/volcano12.png")
+volcano13 = pygame.image.load("textures/volcano13.png")
+volcano14 = pygame.image.load("textures/volcano14.png")
+volcano15 = pygame.image.load("textures/volcano15.png")
+volcano16 = pygame.image.load("textures/volcano16.png")
+
 iceImg = pygame.image.load("textures/ice.png")
 swampImg = pygame.image.load("textures/swamp.png")
 goldImg = pygame.image.load("textures/gold.png")
@@ -47,7 +64,7 @@ black_border_img.set_colorkey((255,0,255))
 white_border_img = pygame.image.load("textures/white_border.png").convert()
 white_border_img.set_colorkey((255,0,255))
 
-logo = pygame.image.load("textures/logo.png").convert()
+logo = pygame.image.load("textures/RealLogo.png").convert_alpha()
 logo.set_colorkey((255,0,255))
 
 def draw_everything():      #draws everything
@@ -119,6 +136,7 @@ def drawboard():                        #draws the
     AnimationTick = pop()
     for x in range(18):
         for y in range(18):
+
             if mapArray[x][y].biome == "s":
                   setDisplay.blit(swampImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "i":
@@ -145,20 +163,54 @@ def drawboard():                        #draws the
                 else:
                     setDisplay.blit(waterImg7, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "g":
-                  setDisplay.blit(goldImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-    
+                global VolcanoTile
+                if VolcanoTile % 16 == 0: #apparently it rendered vertically first.. NOT CHANGING THE ORDER, JUST DON'T TOUCH THIS PART
+                      setDisplay.blit(volcano1, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 1:
+                      setDisplay.blit(volcano5, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 2:
+                      setDisplay.blit(volcano9, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 3:
+                      setDisplay.blit(volcano13, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 4:
+                      setDisplay.blit(volcano2, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 5:
+                      setDisplay.blit(volcano6, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 6:
+                      setDisplay.blit(volcano10, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 7:
+                      setDisplay.blit(volcano14, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 8:
+                      setDisplay.blit(volcano3, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 9:
+                      setDisplay.blit(volcano7, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 10:
+                      setDisplay.blit(volcano11, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 11:
+                      setDisplay.blit(volcano15, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 12:
+                      setDisplay.blit(volcano4, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 13:
+                      setDisplay.blit(volcano8, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif VolcanoTile % 16 == 14:
+                      setDisplay.blit(volcano12, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                else:
+                      setDisplay.blit(volcano16, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                VolcanoTile += 1
+
     for x in range(18):
         for y in range(18):
             setDisplay.blit(black_border_img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
 
-counter = 0
+watercounter = 0
+VolcanoTile = 0
 
 def pop():
     a = [1,2,3,4]  
     a.pop()
-    global counter
-    counter += 1
-    return counter
+    global watercounter
+    watercounter += 1
+    return watercounter
  
 
 def drawMouseHover():
