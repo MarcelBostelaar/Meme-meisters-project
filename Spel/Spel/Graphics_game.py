@@ -19,6 +19,7 @@ desertImg = pygame.image.load("textures/desert.png")
 iceImg = pygame.image.load("textures/ice.png")
 swampImg = pygame.image.load("textures/swamp.png")
 goldImg = pygame.image.load("textures/gold.png")
+socialmedia = pygame.image.load("textures/socialmedia.png")
 
 Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
 Baseimg.set_colorkey((255,0,255))
@@ -33,7 +34,7 @@ logo = pygame.image.load("textures/logo.png").convert()
 logo.set_colorkey((255,0,255))
 
 def draw_everything():
-    draw_background()
+#    draw_background()
     draw_logo((1000, 50))
     drawboard()
     drawitems()
@@ -48,6 +49,9 @@ def draw_bottom_buttons(pos):
 
 def draw_logo(pos):
     setDisplay.blit(logo, pos)
+
+def draw_socialmedia(pos):
+    setDisplay.blit(socialmedia, pos)
 
 def draw_player_stats(pos):     #also includes end of turn button draw
     x=0

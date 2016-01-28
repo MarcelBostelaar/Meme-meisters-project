@@ -30,6 +30,9 @@ def EscM_detect_presses():
         if event.type == pygame.MOUSEBUTTONDOWN:
             stateMouse = pygame.mouse.get_pressed()
             if stateMouse[0] == 1:
+                if Button1.pressed():
+                    print("Button 1 pressed")
+                    config.window = "MainMenu"
                 if Button2.pressed():
                     print("No functionaility for this button yet")
                 if Button3.pressed():

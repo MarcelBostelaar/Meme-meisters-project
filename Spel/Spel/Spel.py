@@ -10,6 +10,9 @@ import Graphics_game
 import Player_functions
 import Debug_screen
 import Game_Logic
+import MainMenu
+import time
+import PlayerMenu
 
 pygame.init()
 
@@ -26,8 +29,12 @@ config.Playerlist[2].money=6969
 
 
 while True:
-    
+    if config.window == "MainMenu":
+        MainMenu.game_intro()
+    if config.window == "PlayerMenu":
+        PlayerMenu.secondscreen()
     if config.window == "Main":
+        Graphics_game.draw_background()
         Graphics_game.draw_everything()
         if config.debug == True:
             Debug_screen.Draw((900,0))
@@ -55,3 +62,4 @@ while True:
 #    config.setDisplay.blit(pygame.transform.scale(config.setDisplay, (600, 600)), (0,0))
     pygame.display.update()
     config.fpsTime.tick(config.fps)
+
