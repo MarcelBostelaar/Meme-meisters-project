@@ -8,12 +8,13 @@ def OrderMatrix(increment):
 
 
 def EndTurn():
+    GiveMoney()
     config.TurnTick = 0
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")
     if config.PlayerIndex == 4:
         config.PlayerIndex = 0
-    GiveMoney()
+
 
 def GiveMoney():
     player = config.Playerlist[config.PlayerIndex].name

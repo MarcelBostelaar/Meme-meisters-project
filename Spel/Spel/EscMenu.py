@@ -7,7 +7,7 @@ import sys
 MenuHeight = 600
 MenuWidth = 600
 numofbuttons = 4
-buttonlist = ["Menu", "Resign", "Quit game", "Cancel"]
+buttonlist = ["Main Menu", "Resign", "Quit game", "Cancel"]
 fontsize = 40
 padding = 20
 

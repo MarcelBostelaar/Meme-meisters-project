@@ -12,15 +12,17 @@ import Debug_screen
 import Game_Logic
 import Units
 import Turn_Order
-#import MainMenu
+import MainMenu
+import PlayerMenu
+import PlayerNameMenu
 
 pygame.init()
 
 
-Player_functions.PlayerCreation("henk")
-Player_functions.PlayerCreation("freek")
-Player_functions.PlayerCreation("klaas")
-Player_functions.PlayerCreation("sjaak")
+Player_functions.PlayerCreation("henk", (0,0,0))
+Player_functions.PlayerCreation("freek", (0,255,0))
+Player_functions.PlayerCreation("klaas", (0,0,255))
+Player_functions.PlayerCreation("sjaak", (0,255,255))
 
 #config.Playerlist[0].name="henk"
 #config.Playerlist[1].name="freek"
@@ -37,7 +39,26 @@ for i in range(4):
     config.mapArray[4][4].troops.append(newunit)
 config.mapArray[4][4].troops.pop(2)
 
+newunit = Units.Unit()
+newunit.Soldier()
+config.mapArray[3][3].troops.append(newunit)
+newunit = Units.Unit()
+newunit.Robot()
+config.mapArray[3][3].troops.append(newunit)
+newunit = Units.Unit()
+newunit.Tank()
+config.mapArray[3][3].troops.append(newunit)
+
+config.mapArray[3][3].owner = config.Playerlist[2].name
+config.mapArray[4][4].owner = config.Playerlist[1].name
+
 while True:
+    if config.window == "MainMenu":
+        MainMenu.game_intro()
+    if config.window == "PlayerMenu":
+        PlayerMenu.secondscreen()
+    if config.window == "PlayerNameMenu":
+        PlayerNameMenu.thirdscreen()
 
 
     if config.window == "Main":

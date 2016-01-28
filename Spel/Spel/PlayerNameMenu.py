@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 import time
 import Graphics_game
 import config
@@ -38,8 +38,8 @@ player1 = ButtonClass.Button("1", mudgray, font = "algerian", font_size = 30, bg
 player2 = ButtonClass.Button("2", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
 player3 = ButtonClass.Button("3", mudgray, font = "algerian", font_size = 30, bgcolor = gray, height = 88, width = 88)
 player4 = ButtonClass.Button("4", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
-HowMany = ButtonClass.Button("How Many Players?", black, font = "algerian", font_size = 40)
-MainMenu = ButtonClass.Button("Main Menu", black, font = "algerian", font_size = 20, bgcolor = weirdbrown, height = 80, width = 180)
+HowMany = ButtonClass.Button("Name(s) Of The Player(s)?", black, font = "algerian", font_size = 40)
+Back = ButtonClass.Button("Back", black, font = "algerian", font_size = 20, bgcolor = mudyellow, height = 80, width = 180)
 
 def quitgame():
     pygame.quit()
@@ -75,11 +75,11 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     textRect.center = ( (x+(w/2)), (y+(h/2)) )
     config.setDisplay.blit(textSurf, textRect)
 
-def thirdscreen():
-    config.window="PlayerNameMenu"
+def game():
+    config.window="Main"
     config.firsttime = True
 
-def secondscreen():
+def thirdscreen():
 
     #intro = True
 
@@ -89,20 +89,20 @@ def secondscreen():
             pygame.quit()
             quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-#            if Player1.pressed():
-#                config.window="PlayerNameMenu"
-#                config.firsttime = True
-            if MainMenu.pressed():
-                config.window="MainMenu"
+            if player1.pressed():
+                config.window="Main"
+                config.firsttime = True
+            if Back.pressed():
+                config.window="PlayerMenu"
                 config.firsttime = True                
 
     Graphics_game.draw_background()
     player1.draw(1000,300,config.setDisplay)
-    MainMenu.draw(135,830,config.setDisplay)
+    Back.draw(135,830,config.setDisplay)
     player2.draw(1115,300,config.setDisplay)
     player3.draw(1000,415,config.setDisplay)
     player4.draw(1115,415,config.setDisplay)
-    HowMany.draw(915,200,config.setDisplay)
+    HowMany.draw(835,200,config.setDisplay)
     #Graphics_game.draw_socialmedia((1200,800))
     largeText = pygame.font.SysFont("algerian",90)
     TextSurf, TextRect = text_objects("Frequency", largeText)
