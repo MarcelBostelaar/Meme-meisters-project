@@ -4,7 +4,7 @@ import pygame
 window = "MainMenu"
 debug=False
 
-gamename = "Frequency"
+gamename = "MainMenu"
 window_height = 1000
 window_width = 1500
 

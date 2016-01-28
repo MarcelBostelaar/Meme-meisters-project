@@ -12,7 +12,9 @@ import Debug_screen
 import Game_Logic
 import Units
 import Turn_Order
-#import MainMenu
+import MainMenu
+import PlayerMenu
+import PlayerNameMenu
 
 pygame.init()
 
@@ -38,6 +40,12 @@ for i in range(4):
 config.mapArray[4][4].troops.pop(2)
 
 while True:
+    if config.window == "MainMenu":
+        MainMenu.game_intro()
+    if config.window == "PlayerMenu":
+        PlayerMenu.secondscreen()
+    if config.window == "PlayerNameMenu":
+        PlayerNameMenu.thirdscreen()
 
 
     if config.window == "Main":

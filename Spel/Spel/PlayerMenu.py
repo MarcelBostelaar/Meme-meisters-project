@@ -89,9 +89,9 @@ def secondscreen():
             pygame.quit()
             quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
-#            if Player1.pressed():
-#                config.window="PlayerNameMenu"
-#                config.firsttime = True
+            if player1.pressed():
+                config.window="PlayerNameMenu"
+                config.firsttime = True
             if MainMenu.pressed():
                 config.window="MainMenu"
                 config.firsttime = True                
