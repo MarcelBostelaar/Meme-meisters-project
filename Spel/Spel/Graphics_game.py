@@ -1,6 +1,7 @@
 ﻿import pygame
 from config import *
 import ButtonClass
+import random
 
 Background_color = (0,0,0)
 
@@ -15,6 +16,14 @@ backgr = pygame.image.load("textures/parchment_texture.png")
 sizeTexture_parchment = backgr.get_rect().size
 
 waterImg = pygame.image.load("textures/water.png")
+waterImg0 = pygame.image.load("textures/water0.png")
+waterImg1 = pygame.image.load("textures/water1.png")
+waterImg2 = pygame.image.load("textures/water2.png")
+waterImg3 = pygame.image.load("textures/water3.png")
+waterImg4 = pygame.image.load("textures/water4.png")
+waterImg5 = pygame.image.load("textures/water5.png")
+waterImg6 = pygame.image.load("textures/water6.png")
+waterImg7 = pygame.image.load("textures/water7.png")
 forestImg = pygame.image.load("textures/forest.png")
 desertImg = pygame.image.load("textures/desert.png")
 iceImg = pygame.image.load("textures/ice.png")
@@ -69,10 +78,11 @@ def drawitems():        #draws units on field
             if mapArray[x][y].owner != None:
                 setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
 
+
+
 def drawboard():                        #draws the 
     #setDisplay.fill(Background_color)
-
-
+    AnimationTick = pop()
     for x in range(18):
         for y in range(18):
             if mapArray[x][y].biome == "s":
@@ -84,13 +94,38 @@ def drawboard():                        #draws the
             elif mapArray[x][y].biome == "f":
                   setDisplay.blit(forestImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "w":
-                  setDisplay.blit(waterImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                if AnimationTick % 32 <= 4:
+                    setDisplay.blit(waterImg0, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 8:
+                    setDisplay.blit(waterImg1, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 12:
+                    setDisplay.blit(waterImg2, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 16:
+                    setDisplay.blit(waterImg3, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 20:
+                    setDisplay.blit(waterImg4, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 24:
+                    setDisplay.blit(waterImg5, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                elif AnimationTick % 32 <= 28:
+                    setDisplay.blit(waterImg6, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                else:
+                    setDisplay.blit(waterImg7, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "g":
                   setDisplay.blit(goldImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
     
     for x in range(18):
         for y in range(18):
             setDisplay.blit(black_border_img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+
+counter = 0
+
+def pop():
+    a = [1,2,3,4]  
+    a.pop()
+    global counter
+    counter += 1
+    return counter
+ 
 
 def drawMouseHover():
     x = pygame.mouse.get_pos()

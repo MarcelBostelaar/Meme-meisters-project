@@ -1,7 +1,7 @@
 ﻿from Tile import Tile
 import pygame
 
-window = "MainMenu"
+window = "Main"
 debug=False
 
 gamename = "Frequency"
