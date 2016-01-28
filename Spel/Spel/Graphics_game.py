@@ -12,6 +12,7 @@ menu_button = ButtonClass.Button("Menu", font_colour, font_size=fontsize, width 
 help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
 
 backgr = pygame.image.load("textures/parchment_texture.png")
+sizeTexture_parchment = backgr.get_rect().size
 
 waterImg = pygame.image.load("textures/water.png")
 forestImg = pygame.image.load("textures/forest.png")
@@ -19,7 +20,6 @@ desertImg = pygame.image.load("textures/desert.png")
 iceImg = pygame.image.load("textures/ice.png")
 swampImg = pygame.image.load("textures/swamp.png")
 goldImg = pygame.image.load("textures/gold.png")
-socialmedia = pygame.image.load("textures/socialmedia.png")
 
 Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
 Baseimg.set_colorkey((255,0,255))
@@ -33,27 +33,24 @@ white_border_img.set_colorkey((255,0,255))
 logo = pygame.image.load("textures/logo.png").convert()
 logo.set_colorkey((255,0,255))
 
-def draw_everything():
-#    draw_background()
-    draw_logo((1000, 50))
+def draw_everything():      #draws everything
+    #draw_background()
+    #
     drawboard()
     drawitems()
     drawMouseHover()
     draw_player_stats((1000, 360))
     draw_bottom_buttons((1000, 875))
 
-def draw_bottom_buttons(pos):
+def draw_bottom_buttons(pos):       #Draws the menu and help button
     menu_button.draw(pos[0], pos[1], setDisplay)
     help_button.draw(pos[0] + 325, pos[1], setDisplay)
 
 
-def draw_logo(pos):
+def draw_logo(pos):             #draw the logo
     setDisplay.blit(logo, pos)
 
-def draw_socialmedia(pos):
-    setDisplay.blit(socialmedia, pos)
-
-def draw_player_stats(pos):     #also includes end of turn button draw
+def draw_player_stats(pos):     #draws the player information. also includes end of turn button draw
     x=0
     for i in Playerlist:
         Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (0,0,0))
@@ -72,7 +69,7 @@ def drawitems():        #draws units on field
             if mapArray[x][y].owner != None:
                 setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
 
-def drawboard():
+def drawboard():                        #draws the 
     #setDisplay.fill(Background_color)
 
 
@@ -103,13 +100,12 @@ def drawMouseHover():
         setDisplay.blit(white_border_img, (posx, posy))
 
 def draw_background():
-    sizeTexture = backgr.get_rect().size
     posx = 0
     posy = 0
     while posx<window_width:
         while posy<window_height:
             setDisplay.blit(backgr, (posx,posy))
-            posy += sizeTexture[1]
-        posx += sizeTexture[0]
+            posy += sizeTexture_parchment[1]
+        posx += sizeTexture_parchment[0]
         posy = 0
     #setDisplay.blit(backgr, (0,0))

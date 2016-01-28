@@ -39,13 +39,14 @@ def EscM_detect_presses():
                     pygame.quit()
                     sys.exit()
                 if Button4.pressed():
-                    print("Button 4 pressed")
                     config.window = "Main"
+                    config.firsttime = True
 
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 config.window = "Main"
+                config.firsttime = True
 
 
         if event.type == pygame.QUIT:

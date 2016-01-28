@@ -1,11 +1,11 @@
-#temporary class values - might be changed depending on implementation method.
+﻿#temporary class values - might be changed depending on implementation method.
 
 class Unit:
     def __init__(self):
         self.IsAlive = True
 
     def Soldier(self):
-        self.name = "Soldier" 
+        self.Name = "Soldier" 
         self.MoveDistance = 1
         self.AttackRange = 0
         self.Power = 1
@@ -50,7 +50,7 @@ class Unit:
         self.CanSpawn = True
 
     def Boat(self):
-        self.name = "Boat"
+        self.Name = "Boat"
         self.MoveDistance = 2
         self.AttackRange = 0
         self.Power = 6
@@ -61,7 +61,7 @@ class Unit:
         self.CanSpawn = False
 
     def Base(self, biome):
-        self.name = "Base"
+        self.Name = "Base"
         self.MoveDistance = 0
         self.AttackRange = 0
         self.Power = 25
