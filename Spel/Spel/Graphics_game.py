@@ -24,6 +24,14 @@ goldImg = pygame.image.load("textures/gold.png")
 Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
 Baseimg.set_colorkey((255,0,255))
 
+Soldierimg = pygame.image.load("textures/soldier.png").convert()
+Robotimg = pygame.image.load("textures/robot.png").convert()
+Tankimg = pygame.image.load("textures/tank.png").convert()
+
+Soldierimg.set_colorkey((255,0,255))
+Robotimg.set_colorkey((255,0,255))
+Tankimg.set_colorkey((255,0,255))
+
 black_border_img = pygame.image.load("textures/black_border.png").convert()
 black_border_img.set_colorkey((255,0,255))
 
@@ -66,8 +74,34 @@ def draw_player_stats(pos):     #draws the player information. also includes end
 def drawitems():        #draws units on field
     for x in range(18):
         for y in range(18):
-            if mapArray[x][y].owner != None:
+            for u in Playerlist:
+                if u.name == mapArray[x][y].owner:
+                    color = u.color
+            if mapArray[x][y].building != None:
+                pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety, 48,48))
                 setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
+            if mapArray[x][y].troops != []:
+                j = 0
+                for i in mapArray[x][y].troops:
+                    if j == 0:
+                        xoffset = 0
+                        yoffset = 0
+                    elif j == 1:
+                        xoffset = 24
+                        yoffset = 0
+                    elif j == 2:
+                        xoffset = 0
+                        yoffset = 24
+                    if i.Name == "Soldier":
+                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
+                        setDisplay.blit(Soldierimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                    elif i.Name == "Robot":
+                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
+                        setDisplay.blit(Robotimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                    elif i.Name == "Tank":
+                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
+                        setDisplay.blit(Tankimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                    j +=1
 
 def drawboard():                        #draws the 
     #setDisplay.fill(Background_color)

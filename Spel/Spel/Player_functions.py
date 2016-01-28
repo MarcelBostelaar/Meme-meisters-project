@@ -3,10 +3,10 @@ import pygame
 from Player import Player
 import random
 
-def PlayerCreation(name):
+def PlayerCreation(name, color):
     #config.Playerlist = []
 
-    newplayer = Player(name) #later on, ask for name of player
+    newplayer = Player(name, color) #later on, ask for name of player
     biomepicked = False
     while not biomepicked:
         j = random.randint(1,4)
