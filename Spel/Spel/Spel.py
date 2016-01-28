@@ -17,11 +17,14 @@ import Turn_Order
 pygame.init()
 
 
-Player_functions.PlayerCreation(4)
+Player_functions.PlayerCreation("henk")
+Player_functions.PlayerCreation("freek")
+Player_functions.PlayerCreation("klaas")
+Player_functions.PlayerCreation("sjaak")
 
-config.Playerlist[0].name="henk"
-config.Playerlist[1].name="freek"
-config.Playerlist[2].name="klaas"
+#config.Playerlist[0].name="henk"
+#config.Playerlist[1].name="freek"
+#config.Playerlist[2].name="klaas"
 
 config.Playerlist[0].money=420
 config.Playerlist[1].money=1337
