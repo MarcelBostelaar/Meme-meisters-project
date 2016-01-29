@@ -15,6 +15,7 @@ import Turn_Order
 import MainMenu
 import PlayerMenu
 import PlayerNameMenu
+import Music
 
 pygame.init()
 
@@ -54,6 +55,7 @@ config.mapArray[4][4].owner = config.Playerlist[1].name
 
 while True:
     if config.window == "MainMenu":
+        Music.MenuMusic()
         MainMenu.game_intro()
     if config.window == "PlayerMenu":
         PlayerMenu.secondscreen()
@@ -63,6 +65,7 @@ while True:
 
     if config.window == "Main":
         if config.firsttime:
+            Music.GameMusic()
             Graphics_game.draw_background()
             Graphics_game.draw_logo((1000, 50))
             config.firsttime = False

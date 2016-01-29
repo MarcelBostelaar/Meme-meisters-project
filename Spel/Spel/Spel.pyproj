@@ -52,6 +52,9 @@
     <Compile Include="MainMenu.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Music.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Turn_Order.py">
       <SubType>Code</SubType>
     </Compile>
