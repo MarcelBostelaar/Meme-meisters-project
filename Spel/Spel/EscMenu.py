@@ -3,6 +3,7 @@ from ButtonClass import *
 import config
 import os
 import sys
+import Music
 
 MenuHeight = 600
 MenuWidth = 600
