@@ -75,9 +75,10 @@ while True:
         Graphics_game.draw_everything()
         if config.debug == True:
             Debug_screen.Draw((1000,0))
+        Game_Logic.DrawTileInfo((600, 600))
 
         for event in pygame.event.get():
-            #print(event)
+            print(event)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()

@@ -3,6 +3,7 @@ import pygame
 
 window = "MainMenu"
 debug=False
+music = False
 
 gamename = "Frequency"
 window_height = 1000
@@ -44,3 +45,5 @@ pygame.display.set_caption(gamename)
 Playerlist = []
 
 firsttime = True
+
+selectedtile = None
