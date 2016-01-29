@@ -3,6 +3,7 @@ import time
 import Graphics_game
 import config
 import ButtonClass
+import Music
 
 pygame.init()
 
@@ -26,7 +27,6 @@ mudred = (112,46,27)
 mudblue = (1,66,137)
 
 fontsize = 20
-#pygame.mixer.music.load("Title.mp3")
 
 NewGame = ButtonClass.Button("New Game", black, font = "algerian", font_size = 30, bgcolor = mudblue, height = 150, width = 500)
 LoadGame = ButtonClass.Button("Load Game", black, font = "algerian", font_size = 20, bgcolor = mudgreen, height = 95, width = 300)
@@ -89,7 +89,7 @@ def game_intro():
             if QuitGame.pressed():
                 pygame.quit()
                 quit()
-
+    #Music.MenuMusic()
     Graphics_game.draw_background()
     NewGame.draw(500,450,config.setDisplay)
     QuitGame.draw(765,780,config.setDisplay)

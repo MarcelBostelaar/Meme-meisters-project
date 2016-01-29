@@ -52,9 +52,10 @@
     <Compile Include="MainMenu.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="TextInputClass.py">
+    <Compile Include="Music.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TextInputClass.py" />
     <Compile Include="Turn_Order.py">
       <SubType>Code</SubType>
     </Compile>

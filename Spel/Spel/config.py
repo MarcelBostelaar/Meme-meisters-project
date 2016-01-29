@@ -1,10 +1,10 @@
 ﻿from Tile import Tile
 import pygame
 
-window = "Main"
+window = "MainMenu"
 debug=False
 
-gamename = "MainMenu"
+gamename = "Frequency"
 window_height = 1000
 window_width = 1500
 

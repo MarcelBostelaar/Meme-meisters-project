@@ -3,6 +3,7 @@ from ButtonClass import *
 import config
 import os
 import sys
+import Music
 
 MenuHeight = 600
 MenuWidth = 600
@@ -33,6 +34,7 @@ def EscM_detect_presses():
                 if Button1.pressed():
                     print("Button 1 pressed")
                     config.window = "MainMenu"
+                    config.firsttime = True
                 if Button2.pressed():
                     print("No functionaility for this button yet")
                 if Button3.pressed():
