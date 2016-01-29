@@ -134,6 +134,24 @@ def drawitems():        #draws units on field
 def drawboard():                        #draws the 
     #setDisplay.fill(Background_color)
     AnimationTick = pop()
+
+    if AnimationTick % 32 <= 4:
+        waterImgThisTick = waterImg0
+    elif AnimationTick % 32 <= 8:
+        waterImgThisTick = waterImg1
+    elif AnimationTick % 32 <= 12:
+        waterImgThisTick = waterImg2
+    elif AnimationTick % 32 <= 16:
+        waterImgThisTick = waterImg3
+    elif AnimationTick % 32 <= 20:
+        waterImgThisTick = waterImg4
+    elif AnimationTick % 32 <= 24:
+        waterImgThisTick = waterImg5
+    elif AnimationTick % 32 <= 28:
+        waterImgThisTick = waterImg6
+    else:
+        waterImgThisTick = waterImg7
+
     for x in range(18):
         for y in range(18):
 
@@ -146,22 +164,7 @@ def drawboard():                        #draws the
             elif mapArray[x][y].biome == "f":
                   setDisplay.blit(forestImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "w":
-                if AnimationTick % 32 <= 4:
-                    setDisplay.blit(waterImg0, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 8:
-                    setDisplay.blit(waterImg1, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 12:
-                    setDisplay.blit(waterImg2, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 16:
-                    setDisplay.blit(waterImg3, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 20:
-                    setDisplay.blit(waterImg4, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 24:
-                    setDisplay.blit(waterImg5, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                elif AnimationTick % 32 <= 28:
-                    setDisplay.blit(waterImg6, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-                else:
-                    setDisplay.blit(waterImg7, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                setDisplay.blit(waterImgThisTick, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
             elif mapArray[x][y].biome == "g":
                 global VolcanoTile
                 if VolcanoTile % 16 == 0: #apparently it rendered vertically first.. NOT CHANGING THE ORDER, JUST DON'T TOUCH THIS PART
