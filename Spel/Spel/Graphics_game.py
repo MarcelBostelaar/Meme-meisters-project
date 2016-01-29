@@ -67,6 +67,9 @@ white_border_img.set_colorkey((255,0,255))
 logo = pygame.image.load("textures/RealLogo.png").convert_alpha()
 logo.set_colorkey((255,0,255))
 
+global AnimationTick
+AnimationTick = 0
+
 def draw_everything():      #draws everything
     #draw_background()
     #
@@ -133,7 +136,8 @@ def drawitems():        #draws units on field
 
 def drawboard():                        #draws the 
     #setDisplay.fill(Background_color)
-    AnimationTick = pop()
+    global AnimationTick
+    AnimationTick += 1
 
     if AnimationTick % 32 <= 4:
         waterImgThisTick = waterImg0
@@ -205,12 +209,12 @@ def drawboard():                        #draws the
         for y in range(18):
             setDisplay.blit(black_border_img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
 
-watercounter = 0
+#watercounter = 0
 VolcanoTile = 0
 
 def pop():
-    a = [1,2,3,4]  
-    a.pop()
+    #a = [1,2,3,4]  
+    #a.pop()
     global watercounter
     watercounter += 1
     return watercounter

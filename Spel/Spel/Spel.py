@@ -15,6 +15,7 @@ import Turn_Order
 import MainMenu
 import PlayerMenu
 import PlayerNameMenu
+import TextInputClass
 
 pygame.init()
 
@@ -52,6 +53,9 @@ config.mapArray[3][3].troops.append(newunit)
 config.mapArray[3][3].owner = config.Playerlist[2].name
 config.mapArray[4][4].owner = config.Playerlist[1].name
 
+
+testbar = TextInputClass.TextBox(400, 30)
+
 while True:
     if config.window == "MainMenu":
         MainMenu.game_intro()
@@ -67,6 +71,13 @@ while True:
             Graphics_game.draw_logo((1000, 50))
             config.firsttime = False
         Graphics_game.draw_everything()
+
+
+        testbar.draw((300, 30))
+
+
+
+
         if config.debug == True:
             Debug_screen.Draw((1000,0))
 
@@ -76,6 +87,9 @@ while True:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
+
+                testbar.handle_char(event)
+
                 if event.key == pygame.K_ESCAPE:
                     config.window = "Esc_Menu"
                     config.firsttime = True
@@ -87,6 +101,8 @@ while True:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Game_Logic.Mousedown()
 
+                testbar.handlemousepress()
+
 
     if config.window == "Esc_Menu":
         if config.firsttime:
@@ -95,7 +111,7 @@ while True:
         EscMenu.EscM_detect_presses()
 
     
-                
+        
 #    config.setDisplay.blit(pygame.transform.scale(config.setDisplay, (600, 600)), (0,0))
     pygame.display.update()
     config.fpsTime.tick(config.fps)
