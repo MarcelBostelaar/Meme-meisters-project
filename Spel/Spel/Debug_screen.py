@@ -41,7 +41,7 @@ def Calculations():
         elif Tile_selected.biome == "f":
             Line_Tile_Biome.text = "Biome: Forest"
         else:
-            Line_Tile_Biome.text = "Biome: Gold"
+            Line_Tile_Biome.text = "Biome: Gems"
         
 
         if Tile_selected.owner != None:
