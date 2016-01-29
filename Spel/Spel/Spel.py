@@ -55,6 +55,7 @@ config.mapArray[4][4].owner = config.Playerlist[1].name
 
 while True:
     if config.window == "MainMenu":
+        pygame.mixer.music.stop()
         Music.MenuMusic()
         MainMenu.game_intro()
     if config.window == "PlayerMenu":

@@ -5,10 +5,12 @@ pygame.init()
 mouseclicksound = pygame.mixer.Sound("MouseClick.wav")
 
 def MenuMusic():
-    pygame.mixer.music.play(-1,0.0)
+    pygame.mixer.music.stop()
     pygame.mixer.music.load("MenuMusic.mp3")
+    pygame.mixer.music.play(-1,0.0)
 
 def GameMusic():
+    pygame.mixer.music.stop()
     pygame.mixer.music.load("GameMusic.mp3")
     pygame.mixer.music.play(-1,0.0)
 
