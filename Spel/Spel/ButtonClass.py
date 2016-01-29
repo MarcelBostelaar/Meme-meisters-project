@@ -1,5 +1,6 @@
 ﻿import pygame
 pygame.init()
+import Music
 
 class Button():
     def __init__(self, text, font_color, font = None, font_size = 10, bgcolor = None, texture = None, height = None, width = None):
@@ -46,6 +47,7 @@ class Button():
 
     def pressed(self):
         mousepos = pygame.mouse.get_pos()
+        Music.MouseClick()
         if mousepos[0] >= self.lastrender[0] and mousepos[1] >= self.lastrender[1]:
             if self.texture_dim != None:
                 if mousepos[0] <= self.lastrender[0] + self.texture_dim[0] and mousepos[1] <= self.lastrender[1] + self.texture_dim[1]:
