@@ -46,4 +46,4 @@ Playerlist = []
 
 firsttime = True
 
-selectedtile = None
+selectedtile = (2,8)
