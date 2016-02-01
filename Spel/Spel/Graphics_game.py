@@ -63,7 +63,7 @@ def draw_everything():      #draws everything
     drawboard()
     drawitems()
     drawMouseHover()
-    draw_player_stats((1000, 360))
+    draw_player_stats((1000, 150))
     draw_bottom_buttons((1000, 875))
 
 def draw_bottom_buttons(pos):       #Draws the menu and help button
