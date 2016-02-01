@@ -38,7 +38,7 @@ player1 = ButtonClass.Button("1", mudgray, font = "algerian", font_size = 30, bg
 player2 = ButtonClass.Button("2", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
 player3 = ButtonClass.Button("3", mudgray, font = "algerian", font_size = 30, bgcolor = gray, height = 88, width = 88)
 player4 = ButtonClass.Button("4", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
-HowMany = ButtonClass.Button("How Many Players?", black, font = "algerian", font_size = 40)
+HowMany = ButtonClass.Button("How Many Players?", white, font = "algerian", font_size = 40)
 MainMenu = ButtonClass.Button("Main Menu", black, font = "algerian", font_size = 20, bgcolor = weirdbrown, height = 80, width = 180)
 
 def quitgame():

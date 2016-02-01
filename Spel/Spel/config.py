@@ -3,7 +3,7 @@ import pygame
 
 window = "MainMenu"
 debug=False
-music = False
+music = True
 
 gamename = "Frequency"
 window_height = 1000
