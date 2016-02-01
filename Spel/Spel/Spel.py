@@ -106,3 +106,4 @@ while True:
 #    config.setDisplay.blit(pygame.transform.scale(config.setDisplay, (600, 600)), (0,0))
     pygame.display.update()
     config.fpsTime.tick(config.fps)
+    
