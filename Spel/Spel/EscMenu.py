@@ -54,4 +54,3 @@ def EscM_detect_presses():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-#miep
