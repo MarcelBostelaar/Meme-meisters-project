@@ -31,7 +31,7 @@ Player_functions.PlayerCreation("sjaak", (0,255,255))
 
 config.Playerlist[0].money=420
 config.Playerlist[1].money=1337
-config.Playerlist[2].money=6969
+config.Playerlist[2].money=49000
 
 newunit = Units.Unit()
 newunit.Soldier()
