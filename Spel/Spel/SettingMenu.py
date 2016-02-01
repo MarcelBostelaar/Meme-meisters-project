@@ -3,6 +3,7 @@ import time
 import Graphics_game
 import config
 import ButtonClass
+import Music
 
 pygame.init()
 
@@ -89,11 +90,13 @@ def settingscreen():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if BGMOn.pressed():
                 config.music = True
+                Music.MenuMusic()
             if BGMOff.pressed():
                 config.music = False
+                pygame.mixer.music.stop()
             if MainMenu.pressed():
                 config.window="MainMenu"
-                config.firsttime = True                
+                config.firsttime = False                
 
     Graphics_game.draw_background()
     BGMOn.draw(1000,300,config.setDisplay)
