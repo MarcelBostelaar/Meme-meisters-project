@@ -1,5 +1,5 @@
 ﻿import config
-
+import Graphics_game
 
 def OrderMatrix(increment):
     config.TurnTick += increment
@@ -14,7 +14,7 @@ def EndTurn():
     print (str(config.PlayerIndex) + "'s turn has ended")
     if config.PlayerIndex == 4:
         config.PlayerIndex = 0
-
+    Graphics_game.draw_background()
 
 def GiveMoney():
     player = config.Playerlist[config.PlayerIndex].name

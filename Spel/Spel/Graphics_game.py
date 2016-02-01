@@ -1,5 +1,5 @@
 ﻿import pygame
-from config import *
+import config
 import ButtonClass
 import random
 
@@ -31,6 +31,8 @@ desertImg = pygame.image.load("textures/desert2x2.png")
 desertImgSide = pygame.image.load("textures/desert1x2.png")
 iceImg = pygame.image.load("textures/ice2x2.png")
 iceImgLower = pygame.image.load("textures/ice2x1.png")
+
+frame = pygame.image.load("textures/Overlay.png")
 
 swampImg = pygame.image.load("textures/swamp2x2.png")
 goldImg = pygame.image.load("textures/goldtest.png")
@@ -65,24 +67,30 @@ def draw_everything():      #draws everything
     draw_bottom_buttons((1000, 875))
 
 def draw_bottom_buttons(pos):       #Draws the menu and help button
-    menu_button.draw(pos[0], pos[1], setDisplay)
-    help_button.draw(pos[0] + 325, pos[1], setDisplay)
+    menu_button.draw(pos[0], pos[1], config.setDisplay)
+    help_button.draw(pos[0] + 325, pos[1], config.setDisplay)
 
 
 def draw_logo(pos):             #draw the logo
-    setDisplay.blit(logo, pos)
+    config.setDisplay.blit(logo, pos)
 
 def draw_player_stats(pos):     #draws the player information. also includes end of turn button draw
     x=0
-    for i in Playerlist:
+    for i in config.Playerlist:
         Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (0,0,0))
         Money_text = ButtonClass.Button("ƒ " + str(i.money), font_colour, font_size=fontsize, width = 200, height = 25, bgcolor = (50,50,50))
 
-        Name_text.draw(pos[0], pos[1]+50*x, setDisplay)
-        Money_text.draw(pos[0]+200, pos[1]+50*x, setDisplay)
+        Name_text.draw(pos[0], pos[1]+50*x, config.setDisplay)
+        Money_text.draw(pos[0]+200, pos[1]+50*x, config.setDisplay)
         x+=1
 
-    end_turn_button.draw(pos[0], pos[1]+50*(x), setDisplay)
+    end_turn_button.draw(pos[0], pos[1]+50*(x), config.setDisplay)
+    config.setDisplay.blit(frame, (pos[0], pos[1]+50*config.PlayerIndex))
+
+#def turnoverlay(pos):
+
+#        setDisplay.blit(frame,(pos[0], pos[1]+50*PlayerIndex, setDisplay))
+#        pygame.display.update()
 
 def drawitems():        #draws units on field
     global VertCount
@@ -91,15 +99,15 @@ def drawitems():        #draws units on field
         VertCount += 1
         for y in range(18):
             HoriCount += 1
-            for u in Playerlist:
-                if u.name == mapArray[x][y].owner:
+            for u in config.Playerlist:
+                if u.name == config.mapArray[x][y].owner:
                     color = u.color
-            if mapArray[x][y].building != None:
-                pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety, 48,48))
-                setDisplay.blit(Baseimg, (x*50+1+Gameboard_offsetx, y*50+1+Gameboard_offsety))
-            if mapArray[x][y].troops != []:
+            if config.mapArray[x][y].building != None:
+                pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, 48,48))
+                config.setDisplay.blit(Baseimg, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety))
+            if config.mapArray[x][y].troops != []:
                 j = 0
-                for i in mapArray[x][y].troops:
+                for i in config.mapArray[x][y].troops:
                     if j == 0:
                         xoffset = 0
                         yoffset = 0
@@ -110,14 +118,14 @@ def drawitems():        #draws units on field
                         xoffset = 0
                         yoffset = 24
                     if i.Name == "Soldier":
-                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
-                        setDisplay.blit(Soldierimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                        pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset, 24,24))
+                        config.setDisplay.blit(Soldierimg, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset))
                     elif i.Name == "Robot":
-                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
-                        setDisplay.blit(Robotimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                        pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset, 24,24))
+                        config.setDisplay.blit(Robotimg, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset))
                     elif i.Name == "Tank":
-                        pygame.draw.rect(setDisplay, color, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset, 24,24))
-                        setDisplay.blit(Tankimg, (x*50+1+Gameboard_offsetx+xoffset, y*50+1+Gameboard_offsety+yoffset))
+                        pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset, 24,24))
+                        config.setDisplay.blit(Tankimg, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset))
                     j +=1
 
 
@@ -151,39 +159,39 @@ def drawboard():                        #draws the
         for y in range(18):
             goldcounter += 1
             HoriCount += 1
-            if mapArray[x][y].biome == "s" and VertCount % 2 == 1 and HoriCount % 2 == 1:
-                  setDisplay.blit(swampImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-            elif mapArray[x][y].biome == "i":
+            if config.mapArray[x][y].biome == "s" and VertCount % 2 == 1 and HoriCount % 2 == 1:
+                  config.setDisplay.blit(swampImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
+            elif config.mapArray[x][y].biome == "i":
                 if VertCount % 2 == 1 and HoriCount % 2 == 0 and HoriCount %18 != 0 and VertCount % 18 != 0:
-                    setDisplay.blit(iceImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                    config.setDisplay.blit(iceImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
                 elif HoriCount %18 == 0 and VertCount % 18 != 0:
-                     setDisplay.blit(iceImgLower, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-            elif mapArray[x][y].biome == "d":
+                     config.setDisplay.blit(iceImgLower, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
+            elif config.mapArray[x][y].biome == "d":
                  if VertCount % 2 == 0 and HoriCount % 2 == 1 and HoriCount %18 != 0 and VertCount % 18 != 0:
-                     setDisplay.blit(desertImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                     config.setDisplay.blit(desertImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
                  elif HoriCount %18 != 0 and VertCount % 18 == 0:
-                     setDisplay.blit(desertImgSide, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-            elif mapArray[x][y].biome == "f":
+                     config.setDisplay.blit(desertImgSide, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
+            elif config.mapArray[x][y].biome == "f":
                 if VertCount % 2 == 0 and HoriCount % 2 == 0 and HoriCount %18 != 0 and VertCount % 18 != 0:
-                     setDisplay.blit(forestImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                     config.setDisplay.blit(forestImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
                 elif HoriCount %18 == 0 and VertCount % 18 != 0:
-                     setDisplay.blit(forestImgLower, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                     config.setDisplay.blit(forestImgLower, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
                 elif HoriCount %18 != 0 and VertCount % 18 == 0:
-                     setDisplay.blit(forestImgSide, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                     config.setDisplay.blit(forestImgSide, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
                 elif HoriCount %18 == 13 and VertCount % 18 == 13:
-                     setDisplay.blit(forestImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                     config.setDisplay.blit(forestImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
 
-            elif mapArray[x][y].biome == "f" and VertCount == 13 and HoriCount == 13:
-                  setDisplay.blit(forestImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-            elif mapArray[x][y].biome == "w":
-                setDisplay.blit(waterImgThisTick, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
-            elif mapArray[x][y].biome == "g":
+            elif config.mapArray[x][y].biome == "f" and VertCount == 13 and HoriCount == 13:
+                  setDisplay.blit(forestImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
+            elif config.mapArray[x][y].biome == "w":
+                config.setDisplay.blit(waterImgThisTick, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
+            elif config.mapArray[x][y].biome == "g":
                 if goldcounter in [134, 136, 170, 172]:
-                    setDisplay.blit(goldImg, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+                    config.setDisplay.blit(goldImg, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
 
     for x in range(18):
         for y in range(18):
-            setDisplay.blit(black_border_img, (x*50+Gameboard_offsetx, y*50+Gameboard_offsety))
+            config.setDisplay.blit(black_border_img, (x*50+config.Gameboard_offsetx, y*50+config.Gameboard_offsety))
 
 watercounter = 0
 
@@ -197,17 +205,17 @@ def pop():
 
 def drawMouseHover():
     x = pygame.mouse.get_pos()
-    posx = (x[0] - Gameboard_offsetx) - (x[0] - Gameboard_offsetx)%50 + Gameboard_offsetx
-    posy = (x[1] - Gameboard_offsety) - (x[1] - Gameboard_offsety)%50 + Gameboard_offsety
-    if posx >= Gameboard_offsetx and posx < Gameboard_offsetx + 900 and posy >= Gameboard_offsety and posy < Gameboard_offsety + 900:
-        setDisplay.blit(white_border_img, (posx, posy))
+    posx = (x[0] - config.Gameboard_offsetx) - (x[0] - config.Gameboard_offsetx)%50 + config.Gameboard_offsetx
+    posy = (x[1] - config.Gameboard_offsety) - (x[1] - config.Gameboard_offsety)%50 + config.Gameboard_offsety
+    if posx >= config.Gameboard_offsetx and posx < config.Gameboard_offsetx + 900 and posy >= config.Gameboard_offsety and posy < config.Gameboard_offsety + 900:
+        config.setDisplay.blit(white_border_img, (posx, posy))
 
 def draw_background():
     posx = 0
     posy = 0
-    while posx<window_width:
-        while posy<window_height:
-            setDisplay.blit(backgr, (posx,posy))
+    while posx<config.window_width:
+        while posy<config.window_height:
+            config.setDisplay.blit(backgr, (posx,posy))
             posy += sizeTexture_parchment[1]
         posx += sizeTexture_parchment[0]
         posy = 0
