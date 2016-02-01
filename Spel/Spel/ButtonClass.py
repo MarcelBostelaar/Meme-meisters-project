@@ -47,14 +47,15 @@ class Button():
 
     def pressed(self):
         mousepos = pygame.mouse.get_pos()
-        Music.MouseClick()
         if mousepos[0] >= self.lastrender[0] and mousepos[1] >= self.lastrender[1]:
             if self.texture_dim != None:
                 if mousepos[0] <= self.lastrender[0] + self.texture_dim[0] and mousepos[1] <= self.lastrender[1] + self.texture_dim[1]:
+                    Music.MouseClick()
                     return True
 
             else:
                 if mousepos[0] <= self.lastrender[0] + self.width and mousepos[1] <= self.lastrender[1] + self.height:
+                    Music.MouseClick()
                     return True
         return False
 

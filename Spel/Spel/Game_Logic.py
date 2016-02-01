@@ -3,6 +3,7 @@ import config
 import Graphics_game
 import Turn_Order
 import ButtonClass
+import Music
 
 white = (255,255,255)
 fontsize = 30
@@ -29,6 +30,7 @@ def SelectTile():
         i = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))
         if i[0] >= 0 and i[0]<=17 and i[1] >=0 and i[1]<= 17:
             config.selectedtile = i
+            Music.MouseClick()
 
         Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
 
