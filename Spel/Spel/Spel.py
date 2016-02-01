@@ -16,6 +16,7 @@ import MainMenu
 import PlayerMenu
 import PlayerNameMenu
 import Music
+import SettingMenu
 
 pygame.init()
 
@@ -60,13 +61,18 @@ while True:
     if config.window == "MainMenu":
         #pygame.mixer.music.stop()
         if config.firsttime:
-            Music.MenuMusic()
+            if config.music == True:
+                Music.MenuMusic()
+            else:
+                pygame.mixer.music.stop()
             config.firsttime = False
         MainMenu.game_intro()
     if config.window == "PlayerMenu":
         PlayerMenu.secondscreen()
     if config.window == "PlayerNameMenu":
         PlayerNameMenu.thirdscreen()
+    if config.window == "SettingMenu":
+        SettingMenu.settingscreen()
 
 
     if config.window == "Main":
