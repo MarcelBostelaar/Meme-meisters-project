@@ -53,6 +53,9 @@ config.mapArray[3][3].troops.append(newunit)
 config.mapArray[3][3].owner = config.Playerlist[2].name
 config.mapArray[4][4].owner = config.Playerlist[1].name
 
+
+Game_Logic.move_unit("Tank", (3,3), (16, 16))
+
 while True:
     if config.window == "MainMenu":
         #pygame.mixer.music.stop()
