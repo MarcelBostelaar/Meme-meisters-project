@@ -40,9 +40,9 @@ goldImg = pygame.image.load("textures/goldtest.png")
 Baseimg = pygame.image.load("textures/base_placeholder.png").convert()
 Baseimg.set_colorkey((255,0,255))
 
-Soldierimg = pygame.image.load("textures/soldier.png").convert()
-Robotimg = pygame.image.load("textures/robot.png").convert()
-Tankimg = pygame.image.load("textures/tank.png").convert()
+Soldierimg = pygame.image.load("textures/soldier.png").convert_alpha()
+Robotimg = pygame.image.load("textures/robot.png").convert_alpha()
+Tankimg = pygame.image.load("textures/tank.png").convert_alpha()
 
 Soldierimg.set_colorkey((255,0,255))
 Robotimg.set_colorkey((255,0,255))
