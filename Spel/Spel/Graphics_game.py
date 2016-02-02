@@ -2,6 +2,7 @@
 import config
 import ButtonClass
 import random
+import Game_Logic
 
 Background_color = (0,0,0)
 
@@ -54,8 +55,12 @@ black_border_img.set_colorkey((255,0,255))
 white_border_img = pygame.image.load("textures/white_border.png").convert()
 white_border_img.set_colorkey((255,0,255))
 
+HUDbackground = pygame.image.load("textures/HUDbg.png").convert_alpha()
 logo = pygame.image.load("textures/Logo.png").convert_alpha()
+currenttile = None
+
 logo.set_colorkey((255,0,255))
+
 
 def draw_everything():      #draws everything
     #draw_background()
@@ -65,6 +70,7 @@ def draw_everything():      #draws everything
     drawMouseHover()
     draw_player_stats((1000, 150))
     draw_bottom_buttons((1000, 875))
+    draw_HUD((1010, 500))
 
 def draw_bottom_buttons(pos):       #Draws the menu and help button
     menu_button.draw(pos[0], pos[1], config.setDisplay)
@@ -73,6 +79,37 @@ def draw_bottom_buttons(pos):       #Draws the menu and help button
 
 def draw_logo(pos):             #draw the logo
     config.setDisplay.blit(logo, pos)
+TileX = 0
+def draw_HUD(pos):
+    global currenttile
+    global TileX
+    Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
+
+    if Tile_selected.biome == "w":
+        currenttile = pygame.image.load("textures/water.png").convert_alpha()
+    elif Tile_selected.biome == "d":
+        currenttile = pygame.image.load("textures/desert2x2.png").convert_alpha()
+    elif Tile_selected.biome == "i":
+        currenttile = pygame.image.load("textures/ice2x2.png").convert_alpha()
+    elif Tile_selected.biome == "s":
+        currenttile = pygame.image.load("textures/swamp2x2.png").convert_alpha()
+    elif Tile_selected.biome == "f":
+        currenttile = pygame.image.load("textures/forest2x2.png").convert_alpha()
+    elif Tile_selected.biome == "g":
+        currenttile = pygame.image.load("textures/goldtest.png").convert_alpha()
+
+    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
+
+    for i in Tile_selected.troops:
+        if Tile_selected.troops != []:
+            Unit = i.Name
+            Troop = ButtonClass.Button(Unit, font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop.draw(1010 + TileX , 610 ,config.setDisplay)
+            TileX += 126
+
+    TileX = 0
+    config.setDisplay.blit(currenttile, pos)
+
 
 def draw_player_stats(pos):     #draws the player information. also includes end of turn button draw
     x=0
