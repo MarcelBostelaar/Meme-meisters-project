@@ -56,3 +56,13 @@ def DrawTileInfo(pos):
 
 def Unit_Options():
     print("lol")
+
+def move_unit(unit, pos_current, pos_target):
+    x=0
+    for i in config.mapArray[pos_current[0]][pos_current[1]].troops:
+        if unit == i.Name:
+            config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
+            config.mapArray[pos_current[0]][pos_current[1]].troops.pop(x)
+            return True
+        x+=1
+    return False
