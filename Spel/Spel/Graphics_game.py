@@ -2,7 +2,6 @@
 import config
 import ButtonClass
 import random
-import Game_Logic
 
 Background_color = (0,0,0)
 
@@ -44,7 +43,6 @@ Baseimg.set_colorkey((255,0,255))
 Soldierimg = pygame.image.load("textures/soldier.png").convert_alpha()
 Robotimg = pygame.image.load("textures/robot.png").convert_alpha()
 Tankimg = pygame.image.load("textures/tank.png").convert_alpha()
-CurrentTile = pygame.image.load().convert_alpha()
 
 Soldierimg.set_colorkey((255,0,255))
 Robotimg.set_colorkey((255,0,255))
@@ -71,9 +69,6 @@ def draw_everything():      #draws everything
 def draw_bottom_buttons(pos):       #Draws the menu and help button
     menu_button.draw(pos[0], pos[1], config.setDisplay)
     help_button.draw(pos[0] + 325, pos[1], config.setDisplay)
-
-def draw_hud(pos):
-    config.setDisplay.blit(CurrentTile, pos)
 
 
 def draw_logo(pos):             #draw the logo
