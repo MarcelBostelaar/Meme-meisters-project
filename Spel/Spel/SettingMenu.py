@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 import time
 import Graphics_game
 import config
