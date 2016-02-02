@@ -4,19 +4,22 @@ import config
 import os
 import sys
 import Music
+import Graphics_game
 
-MenuHeight = 600
-MenuWidth = 600
+frame = pygame.image.load("textures/Overlay.png")
+
+MenuHeight = 800
+MenuWidth = 800
 numofbuttons = 4
-buttonlist = ["Miep", "Resign", "Quit game", "Cancel"]
+buttonlist = ["Game Rules", "", "", "Resume Game"]
 fontsize = 40
 padding = 20
 
 Background = Button("", (255,255,255), bgcolor = (99,151,237), height = MenuHeight, width = MenuWidth)
-Button1 = Button(buttonlist[0], (0,0,0), bgcolor = (230, 150, 90), font_size= fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
-Button2 = Button(buttonlist[1], (0,0,0), bgcolor = (230, 150, 90), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
-Button3 = Button(buttonlist[2], (0,0,0), bgcolor = (230, 150, 90), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
-Button4 = Button(buttonlist[3], (0,0,0), bgcolor = (230, 150, 90), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
+Button1 = Button(buttonlist[0], (0,0,0), bgcolor = (57, 123, 232), font_size= fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
+Button2 = Button(buttonlist[1], (0,0,0), bgcolor = (57, 123, 232), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
+Button3 = Button(buttonlist[2], (0,0,0), bgcolor = (57, 123, 232), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
+Button4 = Button(buttonlist[3], (0,0,0), bgcolor = (57, 123, 232), font_size = fontsize, height = MenuHeight/numofbuttons-padding, width = MenuWidth-padding)
 
 
 def Help_Menu_Draw(position, screen):
@@ -25,21 +28,22 @@ def Help_Menu_Draw(position, screen):
     Button2.draw(position[0]+padding/2, position[1]+MenuHeight/numofbuttons+padding/2, screen)
     Button3.draw(position[0]+padding/2, position[1]+MenuHeight/numofbuttons*2+padding/2, screen)
     Button4.draw(position[0]+padding/2, position[1]+MenuHeight/numofbuttons*3+padding/2, screen)
+    config.setDisplay.blit(frame, (500, 500))
 
 def HelpM_detect_presses():
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
             stateMouse = pygame.mouse.get_pressed()
             if stateMouse[0] == 1:
-                if Button1.pressed():
-                    print("Button 1 pressed")
-                    config.window = "MainMenu"
-                    config.firsttime = True
-                if Button2.pressed():
-                    print("No functionaility for this button yet")
-                if Button3.pressed():
-                    pygame.quit()
-                    sys.exit()
+#                if Button1.pressed():
+#                    print("Button 1 pressed")
+#                    config.window = "MainMenu"
+#                    config.firsttime = True
+#                if Button2.pressed():
+#                    print("No functionaility for this button yet")
+#                if Button3.pressed():
+#                    pygame.quit()
+#                    sys.exit()
                 if Button4.pressed():
                     config.window = "Main"
                     config.firsttime = True
