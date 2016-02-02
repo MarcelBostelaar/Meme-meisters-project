@@ -72,9 +72,7 @@ def secondscreen():
     config.firsttime = True
 
 def game_intro():
-
-
-
+    
     #intro = True
 
     #while intro:
@@ -89,6 +87,10 @@ def game_intro():
             if QuitGame.pressed():
                 pygame.quit()
                 quit()
+            if Settings.pressed():
+                config.window="SettingMenu"
+                config.firsttime = True
+
     #Music.MenuMusic()
     Graphics_game.draw_background()
     NewGame.draw(500,450,config.setDisplay)

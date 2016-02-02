@@ -25,6 +25,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Battle.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ButtonClass.py">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
     <Compile Include="Graphics_game.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HelpMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ImageConfig.py">
       <SubType>Code</SubType>
     </Compile>
@@ -55,7 +61,13 @@
     <Compile Include="Music.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="SettingMenu.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TextInputClass.py" />
+    <Compile Include="TurnOverlay.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Turn_Order.py">
       <SubType>Code</SubType>
     </Compile>
