@@ -33,11 +33,10 @@ config.Playerlist[2].money=49000
 config.Playerlist[3].money=49000
 
 newunit = Units.Unit()
-newunit.Soldier()
+newunit.Tank()
 print(newunit.Name)
-for i in range(4):
-    config.mapArray[6][4].troops.append(newunit)
-config.mapArray[6][4].troops.pop(2)
+for i in range(3):
+    config.mapArray[1][0].troops.append(newunit)
 
 newunit = Units.Unit()
 newunit.Soldier()
@@ -50,10 +49,10 @@ newunit.Tank()
 config.mapArray[3][3].troops.append(newunit)
 
 config.mapArray[3][3].owner = config.Playerlist[2].name
-config.mapArray[6][4].owner = config.Playerlist[0].name
+config.mapArray[3][4].owner = config.Playerlist[0].name
 
 
-Game_Logic.move_unit("Tank", (3,3), (16, 16))
+#Game_Logic.move_unit("Tank", (3,3), (16, 16))
 
 while True:
     if config.window == "MainMenu":
@@ -97,7 +96,6 @@ while True:
                 if event.key == pygame.K_F3:
                     config.debug = not config.debug
                     config.firsttime = True
-                    Game_Logic.buy_unit("Boat", (6,4))
                 if event.key == pygame.K_F4:
                     Turn_Order.OrderMatrix(1)
                     
