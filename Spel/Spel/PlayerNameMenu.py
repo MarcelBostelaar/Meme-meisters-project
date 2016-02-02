@@ -93,8 +93,7 @@ def thirdscreen():
                 config.window="Main"
                 config.firsttime = True
             if Back.pressed():
-                config.window="PlayerMenu"
-                config.firsttime = True                
+                config.window="PlayerMenu"            
 
     Graphics_game.draw_background()
     player1.draw(1000,300,config.setDisplay)

@@ -22,6 +22,8 @@ def Mousedown():
             config.firsttime = True
         if Graphics_game.help_button.pressed():
             print("Help button pressed")
+            config.window = "Help_Menu"
+            config.firsttime = True
         SelectTile()
 
 def SelectTile():
