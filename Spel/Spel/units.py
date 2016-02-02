@@ -37,7 +37,7 @@ class Unit:
         self.CanBuild = True
         self.CanSpawn = False
 
-    def Barracks(self, biome):
+    def Barracks(self):
         self.Name = "Barracks"
         self.MoveDistance = 0
         self.AttackRange = 0
@@ -45,7 +45,6 @@ class Unit:
         self.Price = 500
         self.CanMove = False
         self.CanAttack = False
-        self.Biome = biome
         self.CanBuild = False
         self.CanSpawn = True
 
@@ -65,7 +64,7 @@ class Unit:
         self.MoveDistance = 0
         self.AttackRange = 0
         self.Power = 25
-        self.Price = 0
+        self.Price = None
         self.CanMove = False
         self.CanAttack = False
         self.CanBuild = False
