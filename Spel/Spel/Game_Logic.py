@@ -61,6 +61,16 @@ def Unit_Options():
     print("lol")
 
 def move_unit(unit, pos_current, pos_target):
+    if abs(pos_current[0]-pos_target[0])+abs(pos_current[1]-pos_target[1]) >1:
+        return False
+    if config.mapArray[pos_target[0]][pos_target[1]].biome == "w":
+        if len(config.mapArray[pos_target[0]][pos_target[1]].troops) >0:
+            if len(config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops)<3:
+                config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops.append(unit)
+                return True
+        return False
+    if config.mapArray[pos_target[0]][pos_target[1]].building != None:
+        return False
     x=0
     for i in config.mapArray[pos_current[0]][pos_current[1]].troops:
         if unit == i.Name:
@@ -209,3 +219,4 @@ def combat(AttackingTile, DefendingTile):
         config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power -= tile1_str
         if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power <1:
             config.mapArray[DefendingTile[0]][DefendingTile[1]].building = None
+    config.TurnTick += 1
