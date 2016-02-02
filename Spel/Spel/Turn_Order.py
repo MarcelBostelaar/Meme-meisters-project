@@ -1,5 +1,6 @@
 ﻿import config
 import Graphics_game
+import EndingMenu
 
 def OrderMatrix(increment):
     config.TurnTick += increment
@@ -10,6 +11,8 @@ def OrderMatrix(increment):
 def EndTurn():
     GiveMoney()
     config.TurnTick = 0
+    if config.Playerlist[config.PlayerIndex].money >= 50000:
+       config.window="EndingMenu"
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")
     if config.PlayerIndex == 4:

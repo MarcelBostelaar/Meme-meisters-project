@@ -1,8 +1,10 @@
-import pygame
+﻿import pygame
 import time
 import Graphics_game
 import config
 import ButtonClass
+
+frame = pygame.image.load("textures/Goldentrophy.png")
 
 pygame.init()
 
@@ -79,7 +81,7 @@ def thirdscreen():
     config.window="PlayerNameMenu"
     config.firsttime = True
 
-def secondscreen():
+def endscreen():
 
     #intro = True
 
@@ -107,6 +109,7 @@ def secondscreen():
     largeText = pygame.font.SysFont("algerian",90)
     TextSurf, TextRect = text_objects("Frequency", largeText)
     TextRect.center = ((display_width/4),(display_height/6))
+    config.setDisplay.blit(frame, (360, 200))
 
     config.setDisplay.blit(TextSurf, TextRect)
 

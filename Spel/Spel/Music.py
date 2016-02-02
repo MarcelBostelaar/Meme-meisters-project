@@ -23,6 +23,13 @@ def GameMusic():
 def MouseClick():
     pygame.mixer.Sound.play(mouseclicksound)
 
+def Winsound():
+    if config.music:
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load("win.wav")
+        pygame.mixer.music.play(-1,0.0)
+        pygame.mixer.music.set_volume(0.2)
+
 #circle = pygame.draw.circle(window, (50,30,90), (90,30),16,5)
 
 #window.blit(window, circle)

@@ -18,6 +18,7 @@ import PlayerNameMenu
 import Music
 import SettingMenu
 import HelpMenu
+import EndingMenu
 
 pygame.init()
 
@@ -33,7 +34,7 @@ Player_functions.PlayerCreation("sjaak", (0,255,255))
 
 config.Playerlist[0].money=420
 config.Playerlist[1].money=1337
-config.Playerlist[2].money=49000
+config.Playerlist[2].money=49800
 
 newunit = Units.Unit()
 newunit.Soldier()
@@ -59,6 +60,11 @@ config.mapArray[4][4].owner = config.Playerlist[1].name
 Game_Logic.move_unit("Tank", (3,3), (16, 16))
 
 while True:
+    if config.window == "EndingMenu":
+        if config.firsttime:
+            if config.music == True:
+                Music.Winsound()
+        EndingMenu.endscreen()
     if config.window == "MainMenu":
         #pygame.mixer.music.stop()
         if config.firsttime:
@@ -87,6 +93,8 @@ while True:
         if config.debug == True:
             Debug_screen.Draw((1000,0))
         Game_Logic.DrawTileInfo((600, 600))
+
+
 
         for event in pygame.event.get():
             print(event)
