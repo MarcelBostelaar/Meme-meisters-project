@@ -59,7 +59,7 @@ class Unit:
         self.CanBuild = False
         self.CanSpawn = False
 
-    def Base(self, biome):
+    def Base(self):
         self.Name = "Base"
         self.MoveDistance = 0
         self.AttackRange = 0
@@ -69,7 +69,6 @@ class Unit:
         self.CanAttack = False
         self.CanBuild = False
         self.CanSpawn = True
-        self.Biome = biome
 unit = Unit()
 
 '''
