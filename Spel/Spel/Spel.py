@@ -79,6 +79,7 @@ while True:
         if config.firsttime:
             Music.GameMusic()
             Graphics_game.draw_background()
+            Graphics_game.draw_hud((1000, 500))
             Graphics_game.draw_logo((1000, 50))
             config.firsttime = False
         Graphics_game.draw_everything()
