@@ -47,4 +47,4 @@ Playerlist = []
 firsttime = True
 
 selectedtile = (2,8)
-SelectedTroop = None
+Selectedunits = []

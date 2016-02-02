@@ -16,6 +16,7 @@ Line_Tile_Owner = ButtonClass.Button("", white, font_size = fontsize)
 def Mousedown():
     stateMouse = pygame.mouse.get_pressed()
     if stateMouse[0] == 1:
+        Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
         if Graphics_game.end_turn_button.pressed():
             Turn_Order.EndTurn()
         if Graphics_game.menu_button.pressed():
@@ -25,6 +26,8 @@ def Mousedown():
             print("Help button pressed")
             config.window = "Help_Menu"
             config.firsttime = True
+#       if Graphics_game.Troop1.pressed():
+#           print("meme")
         SelectTile()
 
 def SelectTile():

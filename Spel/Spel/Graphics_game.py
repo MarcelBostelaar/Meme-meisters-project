@@ -4,6 +4,7 @@ import ButtonClass
 import random
 import Game_Logic
 import Player_functions
+import Units
 
 Background_color = (0,0,0)
 
@@ -50,8 +51,7 @@ Soldierimg.set_colorkey((255,0,255))
 Robotimg.set_colorkey((255,0,255))
 Tankimg.set_colorkey((255,0,255))
 
-black_border_img = pygame.image.load("textures/black_border.png").convert()
-black_border_img.set_colorkey((255,0,255))
+black_border_img = pygame.image.load("textures/black_border.png").convert_alpha()
 
 white_border_img = pygame.image.load("textures/white_border.png").convert()
 white_border_img.set_colorkey((255,0,255))
@@ -85,10 +85,14 @@ def draw_bottom_buttons(pos):       #Draws the menu and help button
 def draw_logo(pos):             #draw the logo
     config.setDisplay.blit(logo, pos)
 TileX = 0
+
+
 def draw_HUD(pos):
     global currenttile
     global TileX
     Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
+    
+    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 
     if Tile_selected.biome == "w":
         currenttile = pygame.image.load("textures/water.png").convert_alpha()
@@ -118,16 +122,38 @@ def draw_HUD(pos):
 #    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
 #    config.setDisplay.blit(MoveRight, (pos[0]+184,pos[1]+37))
 #    config.setDisplay.blit(MoveDown, (pos[0]+147,pos[1]+74))
-    
-    
-
-    for i in Tile_selected.troops:
-        if Tile_selected.troops != []:
+    if Tile_selected.troops != []:
+        for i in Tile_selected.troops:
             Unit = i.Name
-            Troop = ButtonClass.Button(Unit, font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
-            Troop.draw(1010 + TileX , 610 ,config.setDisplay)
-            TileX += 126 
-    TileX = 0     
+            config.Selectedunits.append(Unit)
+
+        if len(Tile_selected.troops) >= 3:
+            Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop3 = ButtonClass.Button(config.Selectedunits[2], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop1.draw(1010, 610, config.setDisplay)
+            Troop2.draw(1136, 610, config.setDisplay)
+            Troop3.draw(1262, 610, config.setDisplay)
+        elif len(Tile_selected.troops) >= 2:
+            Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop1.draw(1010, 610, config.setDisplay)
+            Troop2.draw(1136, 610, config.setDisplay)
+        else: 
+            Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            Troop1.draw(1010, 610, config.setDisplay)
+        del config.Selectedunits[:]
+    else:
+        Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+        Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+        Troop3 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+#    for i in Tile_selected.troops:
+#        if Tile_selected.troops != []:
+#            Unit = i.Name
+#            Troop = ButtonClass.Button(Unit, font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+#            Troop.draw(1010 + TileX , 610 ,config.setDisplay)
+#            TileX += 126 
+#    TileX = 0     
     config.setDisplay.blit(currenttile, pos)
 
 
