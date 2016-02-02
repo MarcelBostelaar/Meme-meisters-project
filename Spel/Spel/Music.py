@@ -4,6 +4,7 @@ pygame.init()
 #window = pygame.display.set_mode((640,600))
 
 mouseclicksound = pygame.mixer.Sound("MouseClick.wav")
+mouseclicksound.set_volume(0.2)
 
 def MenuMusic():
     if config.music:

@@ -46,9 +46,6 @@
     <Compile Include="Graphics_game.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ImageConfig.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MainMenu.py">
       <SubType>Code</SubType>
     </Compile>
