@@ -162,3 +162,50 @@ def buy_unit(unit, pos_buying):
                                         return True
                 return False
     return False
+
+def combat(AttackingTile, DefendingTile):
+    tile1 = config.mapArray[AttackingTile[0]][AttackingTile[1]]
+    tile2 = config.mapArray[DefendingTile[0]][DefendingTile[1]]
+    if abs(AttackingTile[0]-DefendingTile[0])+abs(AttackingTile[1]-DefendingTile[1]) >1:
+        print("Troops not next to each other")
+        return False
+    if tile1.owner == tile2.owner:
+        print("Troops are on the same side")
+        return False
+    if tile2.building == None:
+        print("Fighting units")
+        if len(tile1.troops) == 0 or len(tile2.troops) == 0:
+            print("One of the two tiles doesnt have units")
+            return False
+        tile1_str = 0
+        tile2_str = 0
+        for i in tile1.troops:
+            tile1_str += i.Power
+        for i in tile2.troops:
+            tile2_str += i.Power
+
+        tile1_newstr = tile1_str - tile2_str
+        tile2_newstr = tile2_str - tile1_str
+        x = 0
+        for i in tile1.troops:
+            if tile1_newstr > 0:
+                tile1_newstr -= i.Power
+            else:
+                config.mapArray[AttackingTile[0]][AttackingTile[1]].troops = config.mapArray[AttackingTile[0]][AttackingTile[1]].troops[:x]
+            x +=1
+
+        x = 0
+        for i in tile2.troops:
+            if tile2_newstr > 0:
+                tile2_newstr -= i.Power
+            else:
+                config.mapArray[DefendingTile[0]][DefendingTile[1]].troops = config.mapArray[DefendingTile[0]][DefendingTile[1]].troops[:x]
+            x +=1
+    else:
+        print("Fighting a building")
+        tile1_str = 0
+        for i in tile1.troops:
+            tile1_str += i.Power
+        config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power -= tile1_str
+        if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power <1:
+            config.mapArray[DefendingTile[0]][DefendingTile[1]].building = None

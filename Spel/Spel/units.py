@@ -52,8 +52,9 @@ class Unit:
         self.Name = "Boat"
         self.MoveDistance = 2
         self.AttackRange = 0
-        self.Power = 6
+        self.Power = 3
         self.Price = 1000
+        self.troops = []
         self.CanMove = True
         self.CanAttack = False
         self.CanBuild = False
