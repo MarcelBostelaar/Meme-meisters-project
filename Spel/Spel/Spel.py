@@ -17,6 +17,7 @@ import PlayerMenu
 import PlayerNameMenu
 import Music
 import SettingMenu
+import HelpMenu
 
 pygame.init()
 
@@ -75,6 +76,7 @@ while True:
         SettingMenu.settingscreen()
 
 
+
     if config.window == "Main":
         if config.firsttime:
             Music.GameMusic()
@@ -100,6 +102,7 @@ while True:
                     config.firsttime = True
                 if event.key == pygame.K_F4:
                     Turn_Order.OrderMatrix(1)
+                    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Game_Logic.Mousedown()
 
@@ -110,6 +113,11 @@ while True:
             config.firsttime = False
         EscMenu.EscM_detect_presses()
 
+    if config.window == "Help_Menu":
+        if config.firsttime:
+            HelpMenu.Help_Menu_Draw(((config.window_width-HelpMenu.MenuWidth)/2,((config.window_height-HelpMenu.MenuHeight)/2)), config.setDisplay)
+            config.firsttime = False
+        HelpMenu.HelpM_detect_presses()
     
                 
 #    config.setDisplay.blit(pygame.transform.scale(config.setDisplay, (600, 600)), (0,0))
