@@ -1,4 +1,4 @@
-import pygame
+﻿import pygame
 import time
 import Graphics_game
 import config
@@ -128,3 +128,4 @@ def settingscreen():
 #game_intro()
 #pygame.quit()
 #quit()
+#
