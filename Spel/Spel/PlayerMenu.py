@@ -77,7 +77,7 @@ def button(msg,x,y,w,h,ic,ac,action=None):
 
 def thirdscreen():
     config.window="PlayerNameMenu"
-    config.firsttime = True
+    #config.firsttime = True
 
 def secondscreen():
 
@@ -91,10 +91,9 @@ def secondscreen():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if player1.pressed():
                 config.window="PlayerNameMenu"
-                config.firsttime = True
+                #config.firsttime = True
             if MainMenu.pressed():
-                config.window="MainMenu"
-                config.firsttime = True                
+                config.window="MainMenu"               
 
     Graphics_game.draw_background()
     player1.draw(1000,300,config.setDisplay)

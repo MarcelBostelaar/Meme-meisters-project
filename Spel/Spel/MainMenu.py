@@ -83,13 +83,11 @@ def game_intro():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if NewGame.pressed():
                 config.window="PlayerMenu"
-                config.firsttime = True
             if QuitGame.pressed():
                 pygame.quit()
                 quit()
             if Settings.pressed():
                 config.window="SettingMenu"
-                config.firsttime = True
 
     #Music.MenuMusic()
     Graphics_game.draw_background()
