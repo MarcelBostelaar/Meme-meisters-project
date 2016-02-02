@@ -4,6 +4,7 @@ import Graphics_game
 import Turn_Order
 import ButtonClass
 import Music
+import Units
 
 white = (255,255,255)
 fontsize = 30
@@ -67,4 +68,97 @@ def move_unit(unit, pos_current, pos_target):
             config.mapArray[pos_current[0]][pos_current[1]].troops.pop(x)
             return True
         x+=1
+    return False
+
+def buy_unit(unit, pos_buying):
+    buying_tile = config.mapArray[pos_buying[0]][pos_buying[1]]
+    player = config.Playerlist[config.PlayerIndex]
+    newunit = Units.Unit()
+    if unit != "Barracks" and unit != "Boat":
+        if buying_tile.building != None and buying_tile.owner == player.name:
+            if unit == "Soldier":
+                newunit.Soldier()
+                if buying_tile.biome == "i":
+                    newunit.Price -= 30
+            if unit == "Robot":
+                newunit.Robot()
+                if buying_tile.biome == "f":
+                    newunit.Price -= 60
+            if unit == "Tank":
+                newunit.Tank()
+                if buying_tile.biome == "d":
+                    newunit.Price -= 150
+
+            for x in range(-1, 2):
+                for y in range(-1, 2):
+                    if pos_buying[0]+x >=0 and pos_buying[0]+x <=17 and pos_buying[1]+y >=0 and pos_buying[1]+y <=17:
+                        if config.mapArray[pos_buying[0]+x][pos_buying[1]+y].building == None and len(config.mapArray[pos_buying[0]+x][pos_buying[1]+y].troops) < 3 and config.mapArray[pos_buying[0]+x][pos_buying[1]+y].biome != "w" and (config.mapArray[pos_buying[0]+x][pos_buying[1]+y].owner == player.name or config.mapArray[pos_buying[0]+x][pos_buying[1]+y].owner == None):
+                            if newunit.Price <= player.money:
+                                config.Playerlist[config.PlayerIndex].money -= newunit.Price
+                                config.mapArray[pos_buying[0]+x][pos_buying[1]+y].troops.append(newunit)
+                                config.mapArray[pos_buying[0]+x][pos_buying[1]+y].owner = config.Playerlist[config.PlayerIndex].name
+                                return True
+        return False
+    else:
+        if buying_tile.owner == player.name:
+            if unit == "Boat":
+                newunit.Boat()
+                if buying_tile.biome == "s":
+                    newunit.Price -= 200
+
+                for x in range(3):
+                    for y in range(3):
+                        if x == 2:
+                            xdifference = -1
+                        else:
+                            xdifference = x
+                        if y == 2:
+                            ydifference = -1
+                        else:
+                            ydifference = y
+                        if abs(xdifference) + abs(ydifference) == 1:
+                            if pos_buying[0]+xdifference >=0 and pos_buying[0]+xdifference <=17 and pos_buying[1]+ydifference >=0 and pos_buying[1]+ydifference <=17:
+                                if config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].owner == None and config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].biome == "w":
+                                    if newunit.Price <= player.money:
+                                        config.Playerlist[config.PlayerIndex].money -= newunit.Price
+                                        config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].troops.append(newunit)
+                                        config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].owner = config.Playerlist[config.PlayerIndex].name
+                                        return True
+                return False
+
+
+
+            elif unit == "Barracks":
+                newunit.Barracks()
+                doesownbiome = False
+                if config.mapArray[0][0].owner == player.name and config.mapArray[0][0].biome == buying_tile.biome:
+                    doesownbiome = True
+                if config.mapArray[17][0].owner == player.name and config.mapArray[17][0].biome == buying_tile.biome:
+                    doesownbiome = True
+                if config.mapArray[0][17].owner == player.name and config.mapArray[0][17].biome == buying_tile.biome:
+                    doesownbiome = True
+                if config.mapArray[17][17].owner == player.name and config.mapArray[17][17].biome == buying_tile.biome:
+                    doesownbiome = True
+                if not doesownbiome:
+                    newunit.Price = 1500
+
+                for x in range(3):
+                    for y in range(3):
+                        if x == 2:
+                            xdifference = -1
+                        else:
+                            xdifference = x
+                        if y == 2:
+                            ydifference = -1
+                        else:
+                            ydifference = y
+                        if abs(xdifference) + abs(ydifference) == 1:
+                            if pos_buying[0]+xdifference >=0 and pos_buying[0]+xdifference <=17 and pos_buying[1]+ydifference >=0 and pos_buying[1]+ydifference <=17:
+                                if config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].owner == None and config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].building == None and config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].biome != "w":
+                                    if newunit.Price <= player.money:
+                                        config.Playerlist[config.PlayerIndex].money -= newunit.Price
+                                        config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].building = newunit
+                                        config.mapArray[pos_buying[0]+xdifference][pos_buying[1]+ydifference].owner = config.Playerlist[config.PlayerIndex].name
+                                        return True
+                return False
     return False
