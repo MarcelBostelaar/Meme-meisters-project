@@ -38,7 +38,7 @@ def Mousedown():
             print("meme3")
             config.unit = config.Selectedunits[2]
             config.selectedtroop = 3
-        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != [] and config.selectedtile[0]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
+        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != [] and config.selectedtile[0]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
             config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
             Turn_Order.OrderMatrix(1)
@@ -46,15 +46,15 @@ def Mousedown():
             #    print(config.Selectedunits)
             #    config.selectedtroop = len(config.Selectedunits)
             #else: config.selectedtroop = 1
-        if Graphics_game.MoveUp.pressed() and config.Selectedunits != [] and config.selectedtile[1]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
+        if Graphics_game.MoveUp.pressed() and config.Selectedunits != [] and config.selectedtile[1]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
             Turn_Order.OrderMatrix(1)
-        if Graphics_game.MoveRight.pressed() and config.Selectedunits != [] and config.selectedtile[0]+1 <=17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
+        if Graphics_game.MoveRight.pressed() and config.Selectedunits != [] and config.selectedtile[0]+1 <=17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1]))
             config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
             Turn_Order.OrderMatrix(1)
-        if Graphics_game.MoveDown.pressed() and config.Selectedunits != [] and config.selectedtile[1]+1 <= 17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
+        if Graphics_game.MoveDown.pressed() and config.Selectedunits != [] and config.selectedtile[1]+1 <= 17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
             Turn_Order.OrderMatrix(1)

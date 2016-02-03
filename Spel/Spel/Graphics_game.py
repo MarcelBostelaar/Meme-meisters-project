@@ -284,6 +284,9 @@ def drawitems():        #draws units on field
                     elif i.Name == "Tank":
                         pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset, 24,24))
                         config.setDisplay.blit(Tankimg, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset))
+                    elif i.Name == "Boat":
+                        pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, 48,48))
+                        config.setDisplay.blit(Boatimg, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety))
                     j +=1
 
 
