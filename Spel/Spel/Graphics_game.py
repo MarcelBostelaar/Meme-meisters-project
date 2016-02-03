@@ -80,6 +80,7 @@ currenttile = None
 black = (0,0,0)
 logo.set_colorkey((255,0,255))
 
+health = ButtonClass.Button("", (0,255,0), font_size = fontsize)
 
 def draw_everything():      #draws everything
     #draw_background()
@@ -236,6 +237,8 @@ def drawitems():        #draws units on field
             if config.mapArray[x][y].building != None:
                 pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, 48,48))
                 config.setDisplay.blit(Baseimg, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety))
+                health.text = str(config.mapArray[x][y].building.Power)
+                health.draw(x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, config.setDisplay)
             if config.mapArray[x][y].troops != []:
                 j = 0
                 for i in config.mapArray[x][y].troops:
