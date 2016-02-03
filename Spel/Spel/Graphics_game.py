@@ -14,7 +14,12 @@ fontsize = 30
 end_turn_button = ButtonClass.Button("End Turn", font_colour, font_size=fontsize, width = 400, height = 75, bgcolor = (255,100,0))
 menu_button = ButtonClass.Button("Menu", font_colour, font_size=fontsize, width = 300, height = 75, bgcolor = (255,100,0))
 help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
-buy_button = ButtonClass.Button("Buy", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
+BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyTank.draw(1230, 500, config.setDisplay)
+BuyRobot.draw(1230, 535, config.setDisplay)
+BuySoldier.draw(1230, 570, config.setDisplay)
 
 Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
 Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
@@ -135,8 +140,13 @@ def draw_HUD(pos):
     MoveRight.draw(1189, 542, config.setDisplay)
     MoveDown.draw(1152, 579, config.setDisplay)
 
-    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
-    BuyButton.draw(1230, 500, config.setDisplay)
+    if Tile_selected.building != None:
+        BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuyTank.draw(1230, 500, config.setDisplay)
+        BuyRobot.draw(1230, 535, config.setDisplay)
+        BuySoldier.draw(1230, 570, config.setDisplay)
 
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
@@ -222,6 +232,7 @@ def draw_player_stats(pos):     #draws the player information. also includes end
 
 #        setDisplay.blit(frame,(pos[0], pos[1]+50*PlayerIndex, setDisplay))
 #        pygame.display.update()
+
 
 def drawitems():        #draws units on field
     global VertCount

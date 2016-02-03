@@ -54,6 +54,13 @@ def Mousedown():
         if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
+        if Graphics_game.BuyTank.pressed() and Tile_selected.building != []:
+            buy_unit("Tank", config.selectedtile)
+        if Graphics_game.BuyRobot.pressed() and Tile_selected.building != []:
+            buy_unit("Robot", config.selectedtile)
+        if Graphics_game.BuySoldier.pressed() and Tile_selected.building != []:
+            buy_unit("Soldier", config.selectedtile)
+
         config.Selectedunits = []
         config.memetick = 0
         SelectTile()
