@@ -92,7 +92,8 @@ logo.set_colorkey((255,0,255))
 
 health = ButtonClass.Button("", (0,255,0), font_size = fontsize)
 
-attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 30, bgcolor = (255,155,155))
+attack_button.draw(1230, 535, config.setDisplay)
 
 def draw_everything():      #draws everything
     #draw_background()
@@ -148,9 +149,8 @@ def draw_HUD(pos):
     MoveRight.draw(1189, 542, config.setDisplay)
     MoveDown.draw(1152, 579, config.setDisplay)
 
-    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
-    BuyButton.draw(1230, 500, config.setDisplay)
-    attack_button.draw(1230, 605, config.setDisplay)
+#    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+#    BuyButton.draw(1230, 500, config.setDisplay)
     if Tile_selected.building != None:
         BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
         BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
@@ -161,6 +161,7 @@ def draw_HUD(pos):
     if Tile_selected.troops != []:
         BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (140,99,60))
         BuyBarracks.draw(1230, 500, config.setDisplay)
+        attack_button.draw(1230, 535, config.setDisplay)
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
 #    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
