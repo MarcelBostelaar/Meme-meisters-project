@@ -160,7 +160,7 @@ def draw_HUD(pos):
 def draw_player_stats(pos):     #draws the player information. also includes end of turn button draw
     x=0
     for i in config.Playerlist:
-        Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (25,25,25))
+        Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = i.color)
         Money_text = ButtonClass.Button("ƒ " + str(i.money), font_colour, font_size=fontsize, width = 200, height = 25, bgcolor = (50,50,50))
 
         Name_text.draw(pos[0], pos[1]+50*x, config.setDisplay)

@@ -22,34 +22,34 @@ import HelpMenu
 pygame.init()
 
 
-Player_functions.PlayerCreation("henk", (0,0,0))
-Player_functions.PlayerCreation("freek", (0,255,0))
-Player_functions.PlayerCreation("klaas", (0,0,255))
+#Player_functions.PlayerCreation("henk", (0,0,0))
+#Player_functions.PlayerCreation("freek", (0,255,0))
+#Player_functions.PlayerCreation("klaas", (0,0,255))
 #Player_functions.PlayerCreation("sjaak", (0,255,255))
 
-config.Playerlist[0].money=49000
-config.Playerlist[1].money=49000
-config.Playerlist[2].money=49000
+#config.Playerlist[0].money=49000
+#config.Playerlist[1].money=49000
+#config.Playerlist[2].money=49000
 #config.Playerlist[3].money=49000
 
-newunit = Units.Unit()
-newunit.Tank()
-print(newunit.Name)
-for i in range(3):
-    config.mapArray[1][0].troops.append(newunit)
+#newunit = Units.Unit()
+#newunit.Tank()
+#print(newunit.Name)
+#for i in range(3):
+#    config.mapArray[1][0].troops.append(newunit)
 
-newunit = Units.Unit()
-newunit.Soldier()
-config.mapArray[3][3].troops.append(newunit)
-newunit = Units.Unit()
-newunit.Robot()
-config.mapArray[3][3].troops.append(newunit)
-newunit = Units.Unit()
-newunit.Tank()
-config.mapArray[3][3].troops.append(newunit)
+#newunit = Units.Unit()
+#newunit.Soldier()
+#config.mapArray[3][3].troops.append(newunit)
+#newunit = Units.Unit()
+#newunit.Robot()
+#config.mapArray[3][3].troops.append(newunit)
+#newunit = Units.Unit()
+#newunit.Tank()
+#config.mapArray[3][3].troops.append(newunit)
 
-config.mapArray[3][3].owner = config.Playerlist[2].name
-config.mapArray[3][4].owner = config.Playerlist[0].name
+#config.mapArray[3][3].owner = config.Playerlist[2].name
+#config.mapArray[3][4].owner = config.Playerlist[0].name
 
 
 #Game_Logic.move_unit("Tank", (3,3), (16, 16))
