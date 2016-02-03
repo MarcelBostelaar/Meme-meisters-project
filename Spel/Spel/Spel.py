@@ -25,12 +25,12 @@ pygame.init()
 Player_functions.PlayerCreation("henk", (0,0,0))
 Player_functions.PlayerCreation("freek", (0,255,0))
 Player_functions.PlayerCreation("klaas", (0,0,255))
-Player_functions.PlayerCreation("sjaak", (0,255,255))
+#Player_functions.PlayerCreation("sjaak", (0,255,255))
 
 config.Playerlist[0].money=49000
 config.Playerlist[1].money=49000
 config.Playerlist[2].money=49000
-config.Playerlist[3].money=49000
+#config.Playerlist[3].money=49000
 
 newunit = Units.Unit()
 newunit.Tank()
