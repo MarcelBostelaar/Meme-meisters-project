@@ -14,7 +14,12 @@ fontsize = 30
 end_turn_button = ButtonClass.Button("End Turn", font_colour, font_size=fontsize, width = 400, height = 75, bgcolor = (255,100,0))
 menu_button = ButtonClass.Button("Menu", font_colour, font_size=fontsize, width = 300, height = 75, bgcolor = (255,100,0))
 help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
-buy_button = ButtonClass.Button("Buy", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
+BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyTank.draw(1230, 500, config.setDisplay)
+BuyRobot.draw(1230, 535, config.setDisplay)
+BuySoldier.draw(1230, 570, config.setDisplay)
 
 Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
 Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
@@ -80,6 +85,9 @@ currenttile = None
 black = (0,0,0)
 logo.set_colorkey((255,0,255))
 
+health = ButtonClass.Button("", (0,255,0), font_size = fontsize)
+
+attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
 
 def draw_everything():      #draws everything
     #draw_background()
@@ -137,6 +145,14 @@ def draw_HUD(pos):
 
     BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
     BuyButton.draw(1230, 500, config.setDisplay)
+    attack_button.draw(1230, 605, config.setDisplay)
+    if Tile_selected.building != None:
+        BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
+        BuyTank.draw(1230, 500, config.setDisplay)
+        BuyRobot.draw(1230, 535, config.setDisplay)
+        BuySoldier.draw(1230, 570, config.setDisplay)
 
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
@@ -223,6 +239,7 @@ def draw_player_stats(pos):     #draws the player information. also includes end
 #        setDisplay.blit(frame,(pos[0], pos[1]+50*PlayerIndex, setDisplay))
 #        pygame.display.update()
 
+
 def drawitems():        #draws units on field
     global VertCount
     global HoriCount
@@ -236,6 +253,8 @@ def drawitems():        #draws units on field
             if config.mapArray[x][y].building != None:
                 pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, 48,48))
                 config.setDisplay.blit(Baseimg, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety))
+                health.text = str(config.mapArray[x][y].building.Power)
+                health.draw(x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, config.setDisplay)
             if config.mapArray[x][y].troops != []:
                 j = 0
                 for i in config.mapArray[x][y].troops:

@@ -38,22 +38,40 @@ def Mousedown():
             print("meme3")
             config.unit = config.Selectedunits[2]
             config.selectedtroop = 3
-        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != []:
+        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != [] and config.selectedtile[0]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
             config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
+            Turn_Order.OrderMatrix(1)
             #if len(config.Selectedunits) > 1:
             #    print(config.Selectedunits)
             #    config.selectedtroop = len(config.Selectedunits)
             #else: config.selectedtroop = 1
-        if Graphics_game.MoveUp.pressed() and config.Selectedunits != []:
+        if Graphics_game.MoveUp.pressed() and config.Selectedunits != [] and config.selectedtile[1]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
-        if Graphics_game.MoveRight.pressed() and config.Selectedunits != []:
+            Turn_Order.OrderMatrix(1)
+        if Graphics_game.MoveRight.pressed() and config.Selectedunits != [] and config.selectedtile[0]+1 <=17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1]))
             config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
-        if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
+            Turn_Order.OrderMatrix(1)
+        if Graphics_game.MoveDown.pressed() and config.Selectedunits != [] and config.selectedtile[1]+1 <= 17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex]:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
+            Turn_Order.OrderMatrix(1)
+        if Graphics_game.BuyTank.pressed() and Tile_selected.building != []:
+            if buy_unit("Tank", config.selectedtile):
+                Turn_Order.OrderMatrix(1)
+        if Graphics_game.BuyRobot.pressed() and Tile_selected.building != []:
+            if buy_unit("Robot", config.selectedtile):
+                Turn_Order.OrderMatrix(1)
+        if Graphics_game.BuySoldier.pressed() and Tile_selected.building != []:
+            if buy_unit("Soldier", config.selectedtile):
+                Turn_Order.OrderMatrix(1)
+
+
+        if Graphics_game.attack_button.pressed():
+            config.isattacking = True
+
         config.Selectedunits = []
         config.memetick = 0
         SelectTile()
@@ -64,7 +82,12 @@ def SelectTile():
     if mouseposition[0] >= config.Gameboard_offsetx and mouseposition[0] <= config.window_width+config.Gameboard_offsetx and mouseposition[1] >= config.Gameboard_offsety and mouseposition[1] <= config.Gameboard_offsety+config.window_height:
         i = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))
         if i[0] >= 0 and i[0]<=17 and i[1] >=0 and i[1]<= 17:
-            config.selectedtile = i
+            if config.isattacking:
+                combat(config.selectedtile, i)
+                config.isattacking = False
+                Turn_Order.OrderMatrix(1)
+            else:
+                config.selectedtile = i
             Music.MouseClick()
 
         Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]

@@ -4,6 +4,7 @@ import Graphics_game
 import config
 import ButtonClass
 import Music
+import Saving
 
 pygame.init()
 
@@ -88,6 +89,11 @@ def game_intro():
                 quit()
             if Settings.pressed():
                 config.window="SettingMenu"
+            if LoadGame.pressed():
+                Saving.load()
+                config.window = "Main"
+                config.firsttime = True
+
 
     #Music.MenuMusic()
     Graphics_game.draw_background()
