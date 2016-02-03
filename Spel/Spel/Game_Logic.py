@@ -60,6 +60,8 @@ def Mousedown():
             buy_unit("Robot", config.selectedtile)
         if Graphics_game.BuySoldier.pressed() and Tile_selected.building != []:
             buy_unit("Soldier", config.selectedtile)
+        if Graphics_game.BuyBarracks.pressed() and Tile_selected.troops != []:
+            buy_unit("Barracks", config.selectedtile)
 
         config.Selectedunits = []
         config.memetick = 0

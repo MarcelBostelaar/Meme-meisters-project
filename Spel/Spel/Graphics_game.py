@@ -17,9 +17,12 @@ help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 7
 BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyBarracks.draw(1230, 500, config.setDisplay)
 BuyTank.draw(1230, 500, config.setDisplay)
 BuyRobot.draw(1230, 535, config.setDisplay)
 BuySoldier.draw(1230, 570, config.setDisplay)
+
 
 Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
 Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
@@ -68,6 +71,8 @@ Baseimg.set_colorkey((255,0,255))
 Soldierimg = pygame.image.load("textures/soldier.png").convert_alpha()
 Robotimg = pygame.image.load("textures/robot.png").convert_alpha()
 Tankimg = pygame.image.load("textures/tank.png").convert_alpha()
+Barrackimg = pygame.image.load("textures/Barracks.png").convert_alpha()
+Boatimg = pygame.image.load("textures/Boat.png").convert_alpha()
 
 Soldierimg.set_colorkey((255,0,255))
 Robotimg.set_colorkey((255,0,255))
@@ -148,7 +153,9 @@ def draw_HUD(pos):
         BuyTank.draw(1230, 500, config.setDisplay)
         BuyRobot.draw(1230, 535, config.setDisplay)
         BuySoldier.draw(1230, 570, config.setDisplay)
-
+    if Tile_selected.troops != []:
+        BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (140,99,60))
+        BuyBarracks.draw(1230, 500, config.setDisplay)
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
 #    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
