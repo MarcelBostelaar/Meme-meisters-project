@@ -254,3 +254,9 @@ def combat(AttackingTile, DefendingTile):
         if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power <1:
             config.mapArray[DefendingTile[0]][DefendingTile[1]].building = None
     config.TurnTick += 1
+
+def janitor():
+    for x in range(18):
+        for y in range(18):
+            if len(config.mapArray[x][y].troops) == 0 and config.mapArray[x][y].building == None:
+                config.mapArray[x][y].owner = None

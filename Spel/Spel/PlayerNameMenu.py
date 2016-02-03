@@ -67,15 +67,15 @@ playercolor1 = TextInputClass.TextBox(width_textbox_color, height_textbox, text 
 playercolor2 = TextInputClass.TextBox(width_textbox_color, height_textbox, text = "Player Colour")
 playercolor3 = TextInputClass.TextBox(width_textbox_color, height_textbox, text = "Player Colour")
 playercolor4 = TextInputClass.TextBox(width_textbox_color, height_textbox, text = "Player Colour")
-player1colorR = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = communist_red)
+player1colorR = TextInputClass.TextBox(width_color_box, height_color_box, text = "255", restriction = "int", maxlenght = 3, bgcolor = communist_red)
 player1colorG = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = radioactive_green)
 player1colorB = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = swedish_blue)
 player2colorR = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = communist_red)
-player2colorG = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = radioactive_green)
+player2colorG = TextInputClass.TextBox(width_color_box, height_color_box, text = "255", restriction = "int", maxlenght = 3, bgcolor = radioactive_green)
 player2colorB = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = swedish_blue)
 player3colorR = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = communist_red)
 player3colorG = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = radioactive_green)
-player3colorB = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = swedish_blue)
+player3colorB = TextInputClass.TextBox(width_color_box, height_color_box, text = "255", restriction = "int", maxlenght = 3, bgcolor = swedish_blue)
 player4colorR = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = communist_red)
 player4colorG = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = radioactive_green)
 player4colorB = TextInputClass.TextBox(width_color_box, height_color_box, text = "0", restriction = "int", maxlenght = 3, bgcolor = swedish_blue)
@@ -96,7 +96,7 @@ def game():
     config.window="Main"
     config.firsttime = True
 
-def calculate_color(R, G, B):
+def calculate_color(R, G, B):       #takes strings of numbers and returns a color tuple (R,G,B)
     if len(R) == 0:
         R = 0
     else:
@@ -119,9 +119,7 @@ def calculate_color(R, G, B):
 
 def resetgame():
     print("game resetten")
-    #for x in range(18):
-    #    for y in range(18):
-    config.mapArray= copy.deepcopy(config.original_mapArray)
+    config.mapArray= copy.deepcopy(config.original_mapArray)    #derefferences original_maparray
     print(config.mapArray[0][0])
     print(config.original_mapArray[0][0])
     config.Playerlist = []
@@ -132,15 +130,14 @@ def resetgame():
     print("Game gereset")
 
 def thirdscreen():
-
-    #intro = True
-
-    #while intro:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
+            if Back.pressed():
+                config.window="PlayerMenu"
+
             if startgame.pressed():
                 config.window="Main"
                 config.firsttime = True
@@ -148,20 +145,20 @@ def thirdscreen():
                 if config.numofplayers >=1:
                     print("Player 1")
                     print(config.Playerlist)
-                    Player_functions.PlayerCreation(player1.text, playercolor1.bgcolor)
+                    Player_functions.PlayerCreation(playername1.text, playercolor1.bgcolor)
                     print("Player 1 appended")
                 if config.numofplayers >=2:
                     print("Player 2")
                     print(config.Playerlist)
-                    Player_functions.PlayerCreation(player2.text, playercolor2.bgcolor)
+                    Player_functions.PlayerCreation(playername2.text, playercolor2.bgcolor)
                 if config.numofplayers >=3:
                     print("Player 3")
                     print(config.Playerlist)
-                    Player_functions.PlayerCreation(player3.text, playercolor3.bgcolor)
+                    Player_functions.PlayerCreation(playername3.text, playercolor3.bgcolor)
                 if config.numofplayers >=4:
                     print("Player 4")
                     print(config.Playerlist)
-                    Player_functions.PlayerCreation(player4.text, playercolor4.bgcolor)
+                    Player_functions.PlayerCreation(playername4.text, playercolor4.bgcolor)
 
             if config.numofplayers >=1:
                 playername1.handlemousepress()
@@ -186,12 +183,8 @@ def thirdscreen():
                 player4colorR.handlemousepress()
                 player4colorG.handlemousepress()
                 player4colorB.handlemousepress()
-            #if player1.pressed():
-            #    config.window="Main"
-            #    config.firsttime = True
-            if Back.pressed():
-                config.window="PlayerMenu"
-        if event.type == pygame.KEYDOWN:
+
+        if event.type == pygame.KEYDOWN:        #All keystrokes are handled here
             playername1.handle_char(event)
             playername2.handle_char(event)
             playername3.handle_char(event)
@@ -211,13 +204,8 @@ def thirdscreen():
 
 
     Graphics_game.draw_background()
-    #player1.draw(1000,300,config.setDisplay)
     Back.draw(135,830,config.setDisplay)
-    #player2.draw(1115,300,config.setDisplay)
-    #player3.draw(1000,415,config.setDisplay)
-    #player4.draw(1115,415,config.setDisplay)
     HowMany.draw(835,200,config.setDisplay)
-    #Graphics_game.draw_socialmedia((1200,800))
     largeText = pygame.font.SysFont("algerian",90)
     TextSurf, TextRect = text_objects("Frequency", largeText)
     TextRect.center = ((display_width/4),(display_height/6))
@@ -225,12 +213,12 @@ def thirdscreen():
     
 
     if config.numofplayers >=1:
-        playercolor1.bgcolor = calculate_color(player1colorR.text,player1colorG.text,player1colorB.text) 
-        playername1.draw((pos_name_boxX, pos_name_boxY))
-        player1colorR.draw((pos_name_boxX+width_textbox, pos_name_boxY))
-        player1colorG.draw((pos_name_boxX+width_textbox+width_color_box, pos_name_boxY))
-        player1colorB.draw((pos_name_boxX+width_textbox+2*width_color_box, pos_name_boxY))
-        playercolor1.draw((pos_name_boxX+width_textbox+3*width_color_box, pos_name_boxY))
+        playercolor1.bgcolor = calculate_color(player1colorR.text,player1colorG.text,player1colorB.text)    #sets the background color of the "player colour" bar into the calculated rgb
+        playername1.draw((pos_name_boxX, pos_name_boxY))                                                    #draws the player name menu
+        player1colorR.draw((pos_name_boxX+width_textbox, pos_name_boxY))                                    #Draws the red textbar
+        player1colorG.draw((pos_name_boxX+width_textbox+width_color_box, pos_name_boxY))                    #Draws the green textbar
+        player1colorB.draw((pos_name_boxX+width_textbox+2*width_color_box, pos_name_boxY))                  #Draws the blue textbar
+        playercolor1.draw((pos_name_boxX+width_textbox+3*width_color_box, pos_name_boxY))                   #
     if config.numofplayers  >=2:
         playercolor2.bgcolor = calculate_color(player2colorR.text,player2colorG.text,player2colorB.text) 
         playername2.draw((pos_name_boxX, pos_name_boxY+25))
