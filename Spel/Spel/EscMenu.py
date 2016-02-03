@@ -8,7 +8,7 @@ import Music
 MenuHeight = 600
 MenuWidth = 600
 numofbuttons = 4
-buttonlist = ["Resume Game", "Main Menu", "Resign", "Quit Game"]
+buttonlist = ["Resume Game", "Main Menu", "Save Game", "Quit Game"]
 fontsize = 40
 padding = 20
 
