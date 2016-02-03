@@ -18,6 +18,9 @@ BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, widt
 BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyBoat = ButtonClass.Button("Buy Boat", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,200))
+
+BuyBoat.draw(1230, 500, config.setDisplay)
 BuyBarracks.draw(1230, 500, config.setDisplay)
 BuyTank.draw(1230, 500, config.setDisplay)
 BuyRobot.draw(1230, 535, config.setDisplay)
@@ -162,6 +165,9 @@ def draw_HUD(pos):
         BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (140,99,60))
         BuyBarracks.draw(1230, 500, config.setDisplay)
         attack_button.draw(1230, 535, config.setDisplay)
+    if Tile_selected.biome == "w":
+        BuyBoat = ButtonClass.Button("Buy Boat", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,200))
+        BuyBoat.draw(1230, 500, config.setDisplay)
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
 #    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
