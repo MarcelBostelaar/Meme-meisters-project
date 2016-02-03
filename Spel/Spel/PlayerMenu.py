@@ -30,7 +30,6 @@ mudorange = (120,95,7)
 mudgray = (2,71,55)
 weirdbrown = (169,78,16)
 
-
 fontsize = 20
 #pygame.mixer.music.load("Title.mp3")
 
@@ -91,7 +90,16 @@ def secondscreen():
         if event.type == pygame.MOUSEBUTTONDOWN:
             if player1.pressed():
                 config.window="PlayerNameMenu"
-                #config.firsttime = True
+                config.numofplayers = 1
+            if player2.pressed():
+                config.window="PlayerNameMenu"
+                config.numofplayers = 2
+            if player3.pressed():
+                config.window="PlayerNameMenu"
+                config.numofplayers = 3
+            if player4.pressed():
+                config.window="PlayerNameMenu"
+                config.numofplayers = 4
             if MainMenu.pressed():
                 config.window="MainMenu"               
 

@@ -16,6 +16,7 @@ Line_Tile_Owner = ButtonClass.Button("", white, font_size = fontsize)
 def Mousedown():
     stateMouse = pygame.mouse.get_pressed()
     if stateMouse[0] == 1:
+        Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
         if Graphics_game.end_turn_button.pressed():
             Turn_Order.EndTurn()
         if Graphics_game.menu_button.pressed():
@@ -25,9 +26,40 @@ def Mousedown():
             print("Help button pressed")
             config.window = "Help_Menu"
             config.firsttime = True
+        if Graphics_game.Troop1.pressed():
+            print("meme1")
+            config.selectedtroop = 1
+            config.unit = config.Selectedunits[0]
+        if Graphics_game.Troop2.pressed():
+            print("meme2")
+            config.selectedtroop = 2
+            config.unit = config.Selectedunits[1]
+        if Graphics_game.Troop3.pressed():
+            print("meme3")
+            config.unit = config.Selectedunits[2]
+            config.selectedtroop = 3
+        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
+            config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
+            #if len(config.Selectedunits) > 1:
+            #    print(config.Selectedunits)
+            #    config.selectedtroop = len(config.Selectedunits)
+            #else: config.selectedtroop = 1
+        if Graphics_game.MoveUp.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
+            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
+        if Graphics_game.MoveRight.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1]))
+            config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
+        if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
+            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
+        config.Selectedunits = []
+        config.memetick = 0
         SelectTile()
 
 def SelectTile():
+    config.Selectedunits = []
     mouseposition = pygame.mouse.get_pos()
     if mouseposition[0] >= config.Gameboard_offsetx and mouseposition[0] <= config.window_width+config.Gameboard_offsetx and mouseposition[1] >= config.Gameboard_offsety and mouseposition[1] <= config.Gameboard_offsety+config.window_height:
         i = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))
@@ -50,6 +82,7 @@ def SelectTile():
         else:
             Line_Tile_Biome.text = "Biome: Gems"
 
+
         Line_Tile.text = "Current Tile = " + str(config.selectedtile)
 
 
@@ -61,11 +94,22 @@ def Unit_Options():
     print("lol")
 
 def move_unit(unit, pos_current, pos_target):
+    if abs(pos_current[0]-pos_target[0])+abs(pos_current[1]-pos_target[1]) >1:
+        return False
+    if config.mapArray[pos_target[0]][pos_target[1]].biome == "w":
+        if len(config.mapArray[pos_target[0]][pos_target[1]].troops) >0:
+            if len(config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops)<3:
+                config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops.append(unit)
+                return True
+        return False
+    if config.mapArray[pos_target[0]][pos_target[1]].building != None:
+        return False
     x=0
     for i in config.mapArray[pos_current[0]][pos_current[1]].troops:
         if unit == i.Name:
             config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
             config.mapArray[pos_current[0]][pos_current[1]].troops.pop(x)
+            config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
             return True
         x+=1
     return False
@@ -209,3 +253,10 @@ def combat(AttackingTile, DefendingTile):
         config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power -= tile1_str
         if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power <1:
             config.mapArray[DefendingTile[0]][DefendingTile[1]].building = None
+    config.TurnTick += 1
+
+def janitor():
+    for x in range(18):
+        for y in range(18):
+            if len(config.mapArray[x][y].troops) == 0 and config.mapArray[x][y].building == None:
+                config.mapArray[x][y].owner = None

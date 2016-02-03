@@ -1,8 +1,8 @@
-import pygame
+﻿import pygame
 import config
 
 class TextBox:
-    def __init__(self, width, height, fontsize = 20, font_color = (255,255,255), bgcolor = (0,0,0), font = None, maxlenght = 20):
+    def __init__(self, width, height, fontsize = 20, font_color = (255,255,255), bgcolor = (0,0,0), font = None, maxlenght = 20, restriction = None, text = ""):
         self.width = width
         self.height = height
         self.font = pygame.font.SysFont(font, fontsize)
@@ -10,20 +10,27 @@ class TextBox:
         self.bgcolor = bgcolor
 
         self.isactive = False
-        self.text = ""
+        self.text = text
         self.lastrender = None
         self.maxlenght = maxlenght
 
+        self.restriction = restriction
+
     def handle_char(self, event):
-        if event.key == pygame.K_RETURN:        #In case of enter, stop typing
-            self.isactive = False
-        elif event.key == ord("\b"):            #backspace removes letter
-            self.text = self.text[:-1]
-        elif event.key >= 32 and event.key <=126:
-            if event.key >=97 and event.key <=122 and (pygame.key.get_pressed()[pygame.K_RSHIFT] or pygame.key.get_pressed()[pygame.K_LSHIFT])== 1: #In case you type a letter with shift pressed, make capital letter
-                event.key -= 32
-            if len(self.text) <= self.maxlenght:
-                self.text = self.text + chr(event.key)
+        if self.isactive:
+            if event.key == pygame.K_RETURN:        #In case of enter, stop typing
+                self.isactive = False
+            elif event.key == ord("\b"):            #backspace removes letter
+                self.text = self.text[:-1]
+            elif event.key >= 32 and event.key <=126:
+                if self.restriction == "int":
+                    if event.key >= 48 and event.key <= 57 and len(self.text) < self.maxlenght:
+                        self.text = self.text + chr(event.key)
+                else:
+                    if event.key >=97 and event.key <=122 and (pygame.key.get_pressed()[pygame.K_RSHIFT] or pygame.key.get_pressed()[pygame.K_LSHIFT])== 1: #In case you type a letter with shift pressed, make capital letter
+                        event.key -= 32
+                    if len(self.text) < self.maxlenght:
+                        self.text = self.text + chr(event.key)
 
     def handlemousepress(self):
         mousepos = pygame.mouse.get_pos()

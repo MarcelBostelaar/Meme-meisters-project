@@ -15,7 +15,7 @@ def EndTurn():
        config.window="EndingMenu"
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")
-    if config.PlayerIndex == 4:
+    if config.PlayerIndex == len(config.Playerlist):
         config.PlayerIndex = 0
     #Graphics_game.draw_background()
 
