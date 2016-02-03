@@ -17,9 +17,15 @@ help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 7
 BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
 BuySoldier = ButtonClass.Button("Buy Soldier", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,60))
+BuyBoat = ButtonClass.Button("Buy Boat", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,200))
+
+BuyBoat.draw(1230, 570, config.setDisplay)
+BuyBarracks.draw(1230, 500, config.setDisplay)
 BuyTank.draw(1230, 500, config.setDisplay)
 BuyRobot.draw(1230, 535, config.setDisplay)
 BuySoldier.draw(1230, 570, config.setDisplay)
+
 
 Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
 Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
@@ -68,6 +74,8 @@ Baseimg.set_colorkey((255,0,255))
 Soldierimg = pygame.image.load("textures/soldier.png").convert_alpha()
 Robotimg = pygame.image.load("textures/robot.png").convert_alpha()
 Tankimg = pygame.image.load("textures/tank.png").convert_alpha()
+Barrackimg = pygame.image.load("textures/Barracks.png").convert_alpha()
+Boatimg = pygame.image.load("textures/Boat.png").convert_alpha()
 
 Soldierimg.set_colorkey((255,0,255))
 Robotimg.set_colorkey((255,0,255))
@@ -87,7 +95,8 @@ logo.set_colorkey((255,0,255))
 
 health = ButtonClass.Button("", (0,255,0), font_size = fontsize)
 
-attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 30, bgcolor = (255,155,155))
+attack_button.draw(1230, 535, config.setDisplay)
 
 def draw_everything():      #draws everything
     #draw_background()
@@ -143,9 +152,8 @@ def draw_HUD(pos):
     MoveRight.draw(1189, 542, config.setDisplay)
     MoveDown.draw(1152, 579, config.setDisplay)
 
-    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
-    BuyButton.draw(1230, 500, config.setDisplay)
-    attack_button.draw(1230, 605, config.setDisplay)
+#    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+#    BuyButton.draw(1230, 500, config.setDisplay)
     if Tile_selected.building != None:
         BuyTank = ButtonClass.Button("Buy Tank", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
         BuyRobot = ButtonClass.Button("Buy Robot", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (155,155,155))
@@ -153,7 +161,12 @@ def draw_HUD(pos):
         BuyTank.draw(1230, 500, config.setDisplay)
         BuyRobot.draw(1230, 535, config.setDisplay)
         BuySoldier.draw(1230, 570, config.setDisplay)
-
+    if Tile_selected.troops != []:
+        BuyBarracks = ButtonClass.Button("Buy Barracks", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (140,99,60))
+        BuyBarracks.draw(1230, 500, config.setDisplay)
+        attack_button.draw(1230, 535, config.setDisplay)
+        BuyBoat = ButtonClass.Button("Buy Boat", font_colour, font_size = fontsize, width = 150, height = 30, bgcolor = (60,60,200))
+        BuyBoat.draw(1230, 570, config.setDisplay)
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
 #    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
@@ -276,6 +289,9 @@ def drawitems():        #draws units on field
                     elif i.Name == "Tank":
                         pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset, 24,24))
                         config.setDisplay.blit(Tankimg, (x*50+1+config.Gameboard_offsetx+xoffset, y*50+1+config.Gameboard_offsety+yoffset))
+                    elif i.Name == "Boat":
+                        pygame.draw.rect(config.setDisplay, color, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety, 48,48))
+                        config.setDisplay.blit(Boatimg, (x*50+1+config.Gameboard_offsetx, y*50+1+config.Gameboard_offsety))
                     j +=1
 
 
