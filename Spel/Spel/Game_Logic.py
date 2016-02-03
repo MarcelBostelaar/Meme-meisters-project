@@ -41,6 +41,10 @@ def Mousedown():
         if Graphics_game.MoveLeft.pressed() and config.Selectedunits != []:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
             config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
+            #if len(config.Selectedunits) > 1:
+            #    print(config.Selectedunits)
+            #    config.selectedtroop = len(config.Selectedunits)
+            #else: config.selectedtroop = 1
         if Graphics_game.MoveUp.pressed() and config.Selectedunits != []:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
@@ -50,11 +54,12 @@ def Mousedown():
         if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
+        config.Selectedunits = []
+        config.memetick = 0
         SelectTile()
 
 def SelectTile():
-    del config.Selectedunits[:]
-#    config.selectedtroop = 0
+    config.Selectedunits = []
     mouseposition = pygame.mouse.get_pos()
     if mouseposition[0] >= config.Gameboard_offsetx and mouseposition[0] <= config.window_width+config.Gameboard_offsetx and mouseposition[1] >= config.Gameboard_offsety and mouseposition[1] <= config.Gameboard_offsety+config.window_height:
         i = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))

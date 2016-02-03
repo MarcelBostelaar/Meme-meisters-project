@@ -144,9 +144,11 @@ def draw_HUD(pos):
 #    config.setDisplay.blit(MoveRight, (pos[0]+184,pos[1]+37))
 #    config.setDisplay.blit(MoveDown, (pos[0]+147,pos[1]+74))
     if Tile_selected.troops != []:
-        for i in Tile_selected.troops:
-            Unit = i.Name
-            config.Selectedunits.append(Unit)
+        if config.memetick == 0:
+            for i in Tile_selected.troops:
+                Unit = i.Name
+                config.memetick = 1
+                config.Selectedunits.append(Unit)
 
         if len(Tile_selected.troops) >= 3:
             Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))

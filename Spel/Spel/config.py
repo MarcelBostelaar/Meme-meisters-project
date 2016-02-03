@@ -50,3 +50,4 @@ selectedtile = (2,8)
 Selectedunits = []
 selectedtroop = 0
 unit = ""
+memetick = 0
