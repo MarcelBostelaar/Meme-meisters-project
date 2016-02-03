@@ -61,7 +61,7 @@ def Calculations():
 
 
         if Tile_selected.building != None:
-            Line_Tile_Building.text = "Building: " + str(Tile_selected.building[0])
+            Line_Tile_Building.text = "Building: " + str(Tile_selected.building.Name)
         else:
             Line_Tile_Building.text = "Building: None"
 

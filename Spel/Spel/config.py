@@ -3,7 +3,7 @@ import pygame
 
 window = "MainMenu"
 debug=False
-music = True
+music = False
 
 gamename = "Frequency"
 window_height = 1000
@@ -47,3 +47,4 @@ Playerlist = []
 firsttime = True
 
 selectedtile = (2,8)
+SelectedTroop = None

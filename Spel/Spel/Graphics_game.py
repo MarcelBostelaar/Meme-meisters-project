@@ -3,6 +3,7 @@ import config
 import ButtonClass
 import random
 import Game_Logic
+import Player_functions
 
 Background_color = (0,0,0)
 
@@ -56,6 +57,10 @@ white_border_img = pygame.image.load("textures/white_border.png").convert()
 white_border_img.set_colorkey((255,0,255))
 
 HUDbackground = pygame.image.load("textures/HUDbg.png").convert_alpha()
+MoveLeft = pygame.image.load("textures/left.png").convert_alpha()
+MoveUp = pygame.image.load("textures/up.png").convert_alpha()
+MoveRight = pygame.image.load("textures/right.png").convert_alpha()
+MoveDown = pygame.image.load("textures/down.png").convert_alpha()
 logo = pygame.image.load("textures/Logo.png").convert_alpha()
 currenttile = None
 
@@ -98,23 +103,38 @@ def draw_HUD(pos):
     elif Tile_selected.biome == "g":
         currenttile = pygame.image.load("textures/goldtest.png").convert_alpha()
 
-    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
+    MoveLeft = ButtonClass.Button("<", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+    MoveUp = ButtonClass.Button("^", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+    MoveRight = ButtonClass.Button(">", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+    MoveDown = ButtonClass.Button("v", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+    MoveLeft.draw(1115, 542, config.setDisplay)
+    MoveUp.draw(1152, 505, config.setDisplay)
+    MoveRight.draw(1189, 542, config.setDisplay)
+    MoveDown.draw(1152, 579, config.setDisplay)
+
+
+#    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
+#    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
+#    config.setDisplay.blit(MoveUp, (pos[0]+147,pos[1]))
+#    config.setDisplay.blit(MoveRight, (pos[0]+184,pos[1]+37))
+#    config.setDisplay.blit(MoveDown, (pos[0]+147,pos[1]+74))
+    
+    
 
     for i in Tile_selected.troops:
         if Tile_selected.troops != []:
             Unit = i.Name
             Troop = ButtonClass.Button(Unit, font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
             Troop.draw(1010 + TileX , 610 ,config.setDisplay)
-            TileX += 126
-
-    TileX = 0
+            TileX += 126 
+    TileX = 0     
     config.setDisplay.blit(currenttile, pos)
 
 
 def draw_player_stats(pos):     #draws the player information. also includes end of turn button draw
     x=0
     for i in config.Playerlist:
-        Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (0,0,0))
+        Name_text = ButtonClass.Button(i.name, font_colour, font_size = fontsize, width = 200, height = 25, bgcolor = (25,25,25))
         Money_text = ButtonClass.Button("ƒ " + str(i.money), font_colour, font_size=fontsize, width = 200, height = 25, bgcolor = (50,50,50))
 
         Name_text.draw(pos[0], pos[1]+50*x, config.setDisplay)
