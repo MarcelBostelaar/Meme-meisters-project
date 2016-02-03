@@ -14,6 +14,23 @@ fontsize = 30
 end_turn_button = ButtonClass.Button("End Turn", font_colour, font_size=fontsize, width = 400, height = 75, bgcolor = (255,100,0))
 menu_button = ButtonClass.Button("Menu", font_colour, font_size=fontsize, width = 300, height = 75, bgcolor = (255,100,0))
 help_button = ButtonClass.Button("?", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
+buy_button = ButtonClass.Button("Buy", font_colour, font_size=fontsize, width = 75, height = 75, bgcolor = (255,100,0))
+
+Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+Troop3 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+Troop1.draw(1010, 610, config.setDisplay)
+Troop2.draw(1136, 610, config.setDisplay)
+Troop3.draw(1262, 610, config.setDisplay)
+
+MoveLeft = ButtonClass.Button("<", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+MoveUp = ButtonClass.Button("^", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+MoveRight = ButtonClass.Button(">", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+MoveDown = ButtonClass.Button("v", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+MoveLeft.draw(1115, 542, config.setDisplay)
+MoveUp.draw(1152, 505, config.setDisplay)
+MoveRight.draw(1189, 542, config.setDisplay)
+MoveDown.draw(1152, 579, config.setDisplay)
 
 backgr = pygame.image.load("textures/parchment_texture.png")
 sizeTexture_parchment = backgr.get_rect().size
@@ -57,13 +74,10 @@ white_border_img = pygame.image.load("textures/white_border.png").convert()
 white_border_img.set_colorkey((255,0,255))
 
 HUDbackground = pygame.image.load("textures/HUDbg.png").convert_alpha()
-MoveLeft = pygame.image.load("textures/left.png").convert_alpha()
-MoveUp = pygame.image.load("textures/up.png").convert_alpha()
-MoveRight = pygame.image.load("textures/right.png").convert_alpha()
-MoveDown = pygame.image.load("textures/down.png").convert_alpha()
 logo = pygame.image.load("textures/Logo.png").convert_alpha()
 currenttile = None
 
+black = (0,0,0)
 logo.set_colorkey((255,0,255))
 
 
@@ -106,16 +120,23 @@ def draw_HUD(pos):
         currenttile = pygame.image.load("textures/forest2x2.png").convert_alpha()
     elif Tile_selected.biome == "g":
         currenttile = pygame.image.load("textures/goldtest.png").convert_alpha()
-
-    MoveLeft = ButtonClass.Button("<", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
-    MoveUp = ButtonClass.Button("^", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
-    MoveRight = ButtonClass.Button(">", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
-    MoveDown = ButtonClass.Button("v", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+    if config.selectedtroop in [1, 2, 3]:
+        MoveLeft = ButtonClass.Button("<", black, font_size = fontsize, width = 25, height = 25, bgcolor = (200,200,200))
+        MoveUp = ButtonClass.Button("^", black, font_size = fontsize, width = 25, height = 25, bgcolor = (200,200,200))
+        MoveRight = ButtonClass.Button(">", black, font_size = fontsize, width = 25, height = 25, bgcolor = (200,200,200))
+        MoveDown = ButtonClass.Button("v", black, font_size = fontsize, width = 25, height = 25, bgcolor = (200,200,200))
+    else:
+        MoveLeft = ButtonClass.Button("<", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+        MoveUp = ButtonClass.Button("^", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+        MoveRight = ButtonClass.Button(">", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
+        MoveDown = ButtonClass.Button("v", font_colour, font_size = fontsize, width = 25, height = 25, bgcolor = (25,25,25))
     MoveLeft.draw(1115, 542, config.setDisplay)
     MoveUp.draw(1152, 505, config.setDisplay)
     MoveRight.draw(1189, 542, config.setDisplay)
     MoveDown.draw(1152, 579, config.setDisplay)
 
+    BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+    BuyButton.draw(1230, 500, config.setDisplay)
 
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
@@ -131,22 +152,47 @@ def draw_HUD(pos):
             Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
             Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
             Troop3 = ButtonClass.Button(config.Selectedunits[2], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            if config.selectedtroop == 1:
+                Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+            elif config.selectedtroop == 2:
+                Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+            elif config.selectedtroop == 3:
+                Troop3 = ButtonClass.Button(config.Selectedunits[2], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
             Troop1.draw(1010, 610, config.setDisplay)
             Troop2.draw(1136, 610, config.setDisplay)
             Troop3.draw(1262, 610, config.setDisplay)
         elif len(Tile_selected.troops) >= 2:
             Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
             Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            if config.selectedtroop == 1:
+                Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+            elif config.selectedtroop == 2:
+                Troop2 = ButtonClass.Button(config.Selectedunits[1], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
             Troop1.draw(1010, 610, config.setDisplay)
             Troop2.draw(1136, 610, config.setDisplay)
         else: 
             Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+            if config.selectedtroop == 1:
+                Troop1 = ButtonClass.Button(config.Selectedunits[0], font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
             Troop1.draw(1010, 610, config.setDisplay)
-        del config.Selectedunits[:]
     else:
         Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
         Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
         Troop3 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (100,100,100))
+        config.selectedtroop = 0
+
+    #if config.selectedtroop == 1:
+    #    Troop1 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+    #    Troop1.draw(1010, 610, config.setDisplay)
+    #elif config.selectedtroop == 2:
+    #    Troop2 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+    #    Troop2.draw(1010, 610, config.setDisplay)
+    #elif config.selectedtroop == 3:
+    #    Troop3 = ButtonClass.Button("", font_colour, font_size=fontsize, width = 120 , height = 30, bgcolor = (155,155,155))
+    #    Troop3.draw(1010, 610, config.setDisplay)
+    #config.selectedtroop = 0
+    #del config.Selectedunits[:]
+
 #    for i in Tile_selected.troops:
 #        if Tile_selected.troops != []:
 #            Unit = i.Name

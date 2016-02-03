@@ -48,6 +48,17 @@ newunit = Units.Unit()
 newunit.Tank()
 config.mapArray[3][3].troops.append(newunit)
 
+newunit = Units.Unit()
+newunit.Soldier()
+config.mapArray[3][13].troops.append(newunit)
+newunit = Units.Unit()
+newunit.Robot()
+config.mapArray[3][13].troops.append(newunit)
+
+newunit = Units.Unit()
+newunit.Tank()
+config.mapArray[14][13].troops.append(newunit)
+
 config.mapArray[3][3].owner = config.Playerlist[2].name
 config.mapArray[3][4].owner = config.Playerlist[0].name
 

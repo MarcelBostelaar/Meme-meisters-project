@@ -48,3 +48,5 @@ firsttime = True
 
 selectedtile = (2,8)
 Selectedunits = []
+selectedtroop = 0
+unit = ""

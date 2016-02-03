@@ -26,11 +26,35 @@ def Mousedown():
             print("Help button pressed")
             config.window = "Help_Menu"
             config.firsttime = True
-#       if Graphics_game.Troop1.pressed():
-#           print("meme")
+        if Graphics_game.Troop1.pressed():
+            print("meme1")
+            config.selectedtroop = 1
+            config.unit = config.Selectedunits[0]
+        if Graphics_game.Troop2.pressed():
+            print("meme2")
+            config.selectedtroop = 2
+            config.unit = config.Selectedunits[1]
+        if Graphics_game.Troop3.pressed():
+            print("meme3")
+            config.unit = config.Selectedunits[2]
+            config.selectedtroop = 3
+        if Graphics_game.MoveLeft.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
+            config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
+        if Graphics_game.MoveUp.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
+            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
+        if Graphics_game.MoveRight.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1]))
+            config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
+        if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
+            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
+            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
         SelectTile()
 
 def SelectTile():
+    del config.Selectedunits[:]
+#    config.selectedtroop = 0
     mouseposition = pygame.mouse.get_pos()
     if mouseposition[0] >= config.Gameboard_offsetx and mouseposition[0] <= config.window_width+config.Gameboard_offsetx and mouseposition[1] >= config.Gameboard_offsety and mouseposition[1] <= config.Gameboard_offsety+config.window_height:
         i = (int((mouseposition[0]-config.Gameboard_offsetx)/50), int((mouseposition[1]-config.Gameboard_offsety)/50))
@@ -52,6 +76,7 @@ def SelectTile():
             Line_Tile_Biome.text = "Biome: Forest"
         else:
             Line_Tile_Biome.text = "Biome: Gems"
+
 
         Line_Tile.text = "Current Tile = " + str(config.selectedtile)
 
@@ -79,6 +104,7 @@ def move_unit(unit, pos_current, pos_target):
         if unit == i.Name:
             config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
             config.mapArray[pos_current[0]][pos_current[1]].troops.pop(x)
+            config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
             return True
         x+=1
     return False
