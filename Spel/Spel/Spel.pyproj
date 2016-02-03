@@ -56,6 +56,7 @@
     <Compile Include="Music.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Saving.py" />
     <Compile Include="SettingMenu.py">
       <SubType>Code</SubType>
     </Compile>
