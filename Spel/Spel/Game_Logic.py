@@ -39,25 +39,21 @@ def Mousedown():
             config.unit = config.Selectedunits[2]
             config.selectedtroop = 3
         if Graphics_game.MoveLeft.pressed() and config.Selectedunits != [] and config.selectedtile[0]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
-            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1]))
-            config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
-            Turn_Order.OrderMatrix(1)
-            #if len(config.Selectedunits) > 1:
-            #    print(config.Selectedunits)
-            #    config.selectedtroop = len(config.Selectedunits)
-            #else: config.selectedtroop = 1
+            if move_unit(config.unit, config.selectedtile, (config.selectedtile[0]-1,config.selectedtile[1])):
+                config.selectedtile = (config.selectedtile[0]-1,config.selectedtile[1])
+                Turn_Order.OrderMatrix(1)
         if Graphics_game.MoveUp.pressed() and config.Selectedunits != [] and config.selectedtile[1]-1 >=0 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
-            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1))
-            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
-            Turn_Order.OrderMatrix(1)
+            if move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]-1)):
+                config.selectedtile = (config.selectedtile[0],config.selectedtile[1]-1)
+                Turn_Order.OrderMatrix(1)
         if Graphics_game.MoveRight.pressed() and config.Selectedunits != [] and config.selectedtile[0]+1 <=17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
-            move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1]))
-            config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
-            Turn_Order.OrderMatrix(1)
+            if move_unit(config.unit, config.selectedtile, (config.selectedtile[0]+1,config.selectedtile[1])):
+                config.selectedtile = (config.selectedtile[0]+1,config.selectedtile[1])
+                Turn_Order.OrderMatrix(1)
         if Graphics_game.MoveDown.pressed() and config.Selectedunits != [] and config.selectedtile[1]+1 <= 17 and config.mapArray[config.selectedtile[0]][config.selectedtile[1]].owner == config.Playerlist[config.PlayerIndex].name:
-            move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
-            config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
-            Turn_Order.OrderMatrix(1)
+            if move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1)):
+                config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
+                Turn_Order.OrderMatrix(1)
         if Graphics_game.BuyTank.pressed() and Tile_selected.building != []:
             if buy_unit("Tank", config.selectedtile):
                 Turn_Order.OrderMatrix(1)
@@ -65,12 +61,15 @@ def Mousedown():
             if buy_unit("Robot", config.selectedtile):
                 Turn_Order.OrderMatrix(1)
         if Graphics_game.BuySoldier.pressed() and Tile_selected.building != []:
-            buy_unit("Soldier", config.selectedtile)
-        if Graphics_game.BuyBarracks.pressed() and Tile_selected.troops != []:
-            buy_unit("Barracks", config.selectedtile)
-
             if buy_unit("Soldier", config.selectedtile):
                 Turn_Order.OrderMatrix(1)
+        if Graphics_game.BuyBarracks.pressed() and Tile_selected.troops != []:
+            if buy_unit("Barracks", config.selectedtile):
+                Turn_Order.OrderMatrix(1)
+        if Graphics_game.BuyBoat.pressed() and Tile_selected.troops != []:
+            if buy_unit("Boat", config.selectedtile):
+                Turn_Order.OrderMatrix(1)
+
 
 
         if Graphics_game.attack_button.pressed():
@@ -121,14 +120,40 @@ def Unit_Options():
     print("lol")
 
 def move_unit(unit, pos_current, pos_target):
+    if (config.mapArray[pos_target[0]][pos_target[1]].owner != config.mapArray[pos_current[0]][pos_current[1]].owner) and config.mapArray[pos_target[0]][pos_target[1]].owner != None:
+        print("Units not on same side")
+        return False
     if abs(pos_current[0]-pos_target[0])+abs(pos_current[1]-pos_target[1]) >1:
+        print("Units too far apart to move there!")
         return False
-    if config.mapArray[pos_target[0]][pos_target[1]].biome == "w":
-        if len(config.mapArray[pos_target[0]][pos_target[1]].troops) >0:
-            if len(config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops)<3:
-                config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops.append(unit)
-                return True
+    if config.mapArray[pos_target[0]][pos_target[1]].biome == "w" and unit != "Boat":
+        if len(config.mapArray[pos_target[0]][pos_target[1]].troops) != 0:
+            x = 0
+            for i in config.mapArray[pos_current[0]][pos_current[1]].troops:
+                if unit == i.Name:
+                    config.mapArray[pos_target[0]][pos_target[1]].troops[0].troops.append(i)
+                    config.mapArray[pos_current[0]][pos_current[1]].troops.pop(x)
+                    config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
+                    return True
         return False
+    if config.mapArray[pos_target[0]][pos_target[1]].biome == "w" and unit == "Boat":
+        if config.mapArray[pos_target[0]][pos_target[1]].troops == []:
+            config.mapArray[pos_target[0]][pos_target[1]].troops.append(config.mapArray[pos_current[0]][pos_current[1]].troops[0])
+            config.mapArray[pos_current[0]][pos_current[1]].troops.pop(0)
+            config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
+            return True
+        return False
+    if config.mapArray[pos_target[0]][pos_target[1]].biome != "w" and unit == "Boat":
+        if len(config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops) == 0:
+            return False
+        x=0
+        for i in config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops:
+            if len(config.mapArray[pos_target[0]][pos_target[1]].troops) <3:
+                config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
+                config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops.pop(x)
+                config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
+            x+=1
+        return True
     if config.mapArray[pos_target[0]][pos_target[1]].building != None:
         return False
     x=0

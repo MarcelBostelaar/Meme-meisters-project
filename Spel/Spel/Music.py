@@ -21,7 +21,8 @@ def GameMusic():
         pygame.mixer.music.set_volume(0.2)
 
 def MouseClick():
-    pygame.mixer.Sound.play(mouseclicksound)
+    #pygame.mixer.Sound.play(mouseclicksound)
+    print("dummy")
 
 def Winsound():
     if config.music:

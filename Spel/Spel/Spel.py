@@ -67,6 +67,9 @@ pygame.init()
 #Game_Logic.move_unit("Tank", (3,3), (16, 16))
 
 while True:
+
+
+
     if config.window == "MainMenu":
         #pygame.mixer.music.stop()
         if config.firsttime:
@@ -88,6 +91,9 @@ while True:
 
 
     if config.window == "Main":
+        #if config.mapArray[7][1].troops != []:
+        #    if config.mapArray[7][1].troops[0].troops != []:
+        #        print(config.mapArray[7][1].troops[0].troops[0].Name)
         if config.firsttime:
             Music.GameMusic()
             Graphics_game.draw_background()
@@ -96,7 +102,7 @@ while True:
         Graphics_game.draw_everything()
         if config.debug == True:
             Debug_screen.Draw((1000,0))
-        Game_Logic.DrawTileInfo((600, 600))
+        #Game_Logic.DrawTileInfo((600, 600))
 
         for event in pygame.event.get():
             #print(event)
