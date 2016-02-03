@@ -18,6 +18,7 @@ import PlayerNameMenu
 import Music
 import SettingMenu
 import HelpMenu
+import EndingMenu
 
 pygame.init()
 
@@ -81,6 +82,8 @@ while True:
         PlayerNameMenu.thirdscreen()
     if config.window == "SettingMenu":
         SettingMenu.settingscreen()
+    if config.window == "terminationmenu":
+        EndingMenu.endscreen()
 
 
 
@@ -109,6 +112,9 @@ while True:
                     config.firsttime = True
                 if event.key == pygame.K_F4:
                     Turn_Order.OrderMatrix(1)
+                if event.key == pygame.K_F9:
+                    EndingMenu.endscreen()
+                    config.firsttime = True
                     
             if event.type == pygame.MOUSEBUTTONDOWN:
                 Game_Logic.Mousedown()
