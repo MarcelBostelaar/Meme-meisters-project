@@ -3,8 +3,9 @@ import time
 import Graphics_game
 import config
 import ButtonClass
+import Turn_Order
 
-frame = pygame.image.load("textures/Goldentrophy.png")
+goldenmedal = pygame.image.load("textures/Goldenmedal.png")
 
 pygame.init()
 
@@ -36,12 +37,12 @@ weirdbrown = (169,78,16)
 fontsize = 20
 #pygame.mixer.music.load("Title.mp3")
 
-player1 = ButtonClass.Button("1", mudgray, font = "algerian", font_size = 30, bgcolor = gray, height = 88, width = 88)
-player2 = ButtonClass.Button("2", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
+player1 = ButtonClass.Button("New Game", black, font = "algerian", font_size = 30, bgcolor = mudblue, height = 100, width = 220)
+player2 = ButtonClass.Button("Quit Game", black, font = "algerian", font_size = 30, bgcolor = mudred, height = 100, width = 220)
 player3 = ButtonClass.Button("3", mudgray, font = "algerian", font_size = 30, bgcolor = gray, height = 88, width = 88)
 player4 = ButtonClass.Button("4", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
-HowMany = ButtonClass.Button("How Many Players?", black, font = "algerian", font_size = 40)
-MainMenu = ButtonClass.Button("Main Menu", black, font = "algerian", font_size = 20, bgcolor = weirdbrown, height = 80, width = 180)
+HowMany = ButtonClass.Button("WINNER!", white, font = "algerian", font_size = 70)
+MainMenu = ButtonClass.Button("Main Menu", black, font = "algerian", font_size = 30, bgcolor = weirdbrown, height = 100, width = 220)
 
 def quitgame():
     pygame.quit()
@@ -52,7 +53,7 @@ def quitgame():
 #clock = pygame.time.Clock()
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, black)
+    textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
 
 def button(msg,x,y,w,h,ic,ac,action=None):
@@ -92,26 +93,30 @@ def endscreen():
             quit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             if player1.pressed():
-                config.window="PlayerNameMenu"
+                config.window="PlayerMenu"
                 config.firsttime = True
+            if player2.pressed():
+                pygame.quit()
+                quit()
             if MainMenu.pressed():
                 config.window="MainMenu"
                 config.firsttime = True                
 
     Graphics_game.draw_background()
     player1.draw(1000,300,config.setDisplay)
-    MainMenu.draw(135,830,config.setDisplay)
-    player2.draw(1115,300,config.setDisplay)
-    player3.draw(1000,415,config.setDisplay)
-    player4.draw(1115,415,config.setDisplay)
-    HowMany.draw(915,200,config.setDisplay)
+    MainMenu.draw(1000,415,config.setDisplay)
+    player2.draw(1000,530,config.setDisplay)
+    #player3.draw(1000,415,config.setDisplay)
+    #player4.draw(1115,415,config.setDisplay)
+    
     #Graphics_game.draw_socialmedia((1200,800))
-    largeText = pygame.font.SysFont("algerian",90)
-    TextSurf, TextRect = text_objects("Frequency", largeText)
-    TextRect.center = ((display_width/4),(display_height/6))
-    config.setDisplay.blit(frame, (360, 200))
+    #largeText = pygame.font.SysFont("algerian",90)
+    #TextSurf, TextRect = text_objects("Winner", largeText)
+   # TextRect.center = ((display_width/4),(display_height/6))
+    config.setDisplay.blit(goldenmedal, (360, 150))
+    HowMany.draw(415,400,config.setDisplay)
 
-    config.setDisplay.blit(TextSurf, TextRect)
+    #config.setDisplay.blit(TextSurf, TextRect)
 
 
    # button("New Game",500,450,500,150,green,bright_green,secondscreen)
