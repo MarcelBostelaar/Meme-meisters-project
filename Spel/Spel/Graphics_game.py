@@ -82,6 +82,8 @@ logo.set_colorkey((255,0,255))
 
 health = ButtonClass.Button("", (0,255,0), font_size = fontsize)
 
+attack_button = ButtonClass.Button("Attack", (255,255,255), font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
+
 def draw_everything():      #draws everything
     #draw_background()
     #
@@ -138,6 +140,7 @@ def draw_HUD(pos):
 
     BuyButton = ButtonClass.Button("Buy", font_colour, font_size = fontsize, width = 150, height = 100, bgcolor = (155,155,155))
     BuyButton.draw(1230, 500, config.setDisplay)
+    attack_button.draw(1230, 605, config.setDisplay)
 
 #    config.setDisplay.blit(HUDbackground, (pos[0]-10,pos[1]-10))
 #    config.setDisplay.blit(MoveLeft, (pos[0]+110,pos[1]+37))
