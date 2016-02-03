@@ -54,16 +54,16 @@ def Mousedown():
         if Graphics_game.MoveDown.pressed() and config.Selectedunits != []:
             move_unit(config.unit, config.selectedtile, (config.selectedtile[0],config.selectedtile[1]+1))
             config.selectedtile = (config.selectedtile[0],config.selectedtile[1]+1)
-
-        if Graphics_game.attack_button.pressed():
-            config.isattacking = True
-
         if Graphics_game.BuyTank.pressed() and Tile_selected.building != []:
             buy_unit("Tank", config.selectedtile)
         if Graphics_game.BuyRobot.pressed() and Tile_selected.building != []:
             buy_unit("Robot", config.selectedtile)
         if Graphics_game.BuySoldier.pressed() and Tile_selected.building != []:
             buy_unit("Soldier", config.selectedtile)
+
+
+        if Graphics_game.attack_button.pressed():
+            config.isattacking = True
 
         config.Selectedunits = []
         config.memetick = 0
@@ -79,7 +79,7 @@ def SelectTile():
                 combat(config.selectedtile, i)
                 config.isattacking = False
             else:
-            config.selectedtile = i
+                config.selectedtile = i
             Music.MouseClick()
 
         Tile_selected = config.mapArray[config.selectedtile[0]][config.selectedtile[1]]
