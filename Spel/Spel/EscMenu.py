@@ -4,11 +4,12 @@ import config
 import os
 import sys
 import Music
+import Saving
 
 MenuHeight = 600
 MenuWidth = 600
 numofbuttons = 4
-buttonlist = ["Resume Game", "Main Menu", "Save Game", "Quit Game"]
+buttonlist = ["Resume Game", "Main Menu", "Save Game & Exit", "Quit Game"]
 fontsize = 40
 padding = 20
 
@@ -39,7 +40,9 @@ def EscM_detect_presses():
                     config.window = "MainMenu"
                     config.firsttime = True
                 if Button3.pressed():
-                    print("No functionaility for this button yet")
+                    Saving.save()
+                    config.window = "MainMenu"
+                    config.firsttime = True
                 if Button4.pressed():
                     pygame.quit()
                     sys.exit()
