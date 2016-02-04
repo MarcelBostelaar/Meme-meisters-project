@@ -19,6 +19,7 @@ def EndTurn():
         if i.active == False:
             x+=1
     if x == len(config.Playerlist)-1:
+       config.winner = config.Playerlist[config.PlayerIndex].name
        config.window="terminationmenu"
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")
