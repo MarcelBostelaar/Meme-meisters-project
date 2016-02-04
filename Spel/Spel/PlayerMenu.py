@@ -49,7 +49,7 @@ def quitgame():
 #clock = pygame.time.Clock()
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, black)
+    textSurface = font.render(text, True, white)
     return textSurface, textSurface.get_rect()
 
 def button(msg,x,y,w,h,ic,ac,action=None):
