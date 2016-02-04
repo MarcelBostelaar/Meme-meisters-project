@@ -14,11 +14,22 @@ def EndTurn():
     if config.Playerlist[config.PlayerIndex].money >= 50000:
        config.winner = config.Playerlist[config.PlayerIndex].name
        config.window="terminationmenu"
+    x=0
+    for i in config.Playerlist:
+        if i.active == False:
+            x+=1
+    if x == len(config.Playerlist)-1:
+       config.window="terminationmenu"
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")
     if config.PlayerIndex == len(config.Playerlist):
         config.PlayerIndex = 0
     #Graphics_game.draw_background()
+    while config.Playerlist[config.PlayerIndex].active == False:
+        config.PlayerIndex +=1
+        if config.PlayerIndex == len(config.Playerlist):
+            config.PlayerIndex = 0
+
 
 def GiveMoney():
     player = config.Playerlist[config.PlayerIndex].name

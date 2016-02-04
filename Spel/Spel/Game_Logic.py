@@ -312,8 +312,11 @@ def combat(AttackingTile, DefendingTile):
             tile1_str += i.Power
         config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power -= tile1_str
         if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Power <1:
+            if config.mapArray[DefendingTile[0]][DefendingTile[1]].building.Name == "Base":
+                for i in config.Playerlist:
+                    if i.name == config.mapArray[DefendingTile[0]][DefendingTile[1]].owner:
+                        i.active = False
             config.mapArray[DefendingTile[0]][DefendingTile[1]].building = None
-    config.TurnTick += 1
 
 def janitor():
     for x in range(18):
