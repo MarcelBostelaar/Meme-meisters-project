@@ -39,7 +39,7 @@ fontsize = 20
 
 player1 = ButtonClass.Button("New Game", black, font = "algerian", font_size = 30, bgcolor = mudblue, height = 100, width = 220)
 player2 = ButtonClass.Button("Quit Game", black, font = "algerian", font_size = 30, bgcolor = mudred, height = 100, width = 220)
-player3 = ButtonClass.Button("3", mudgray, font = "algerian", font_size = 30, bgcolor = gray, height = 88, width = 88)
+player3 = ButtonClass.Button(config.winner, bright_yellow, font = "algerian", font_size = 30)
 player4 = ButtonClass.Button("4", black, font = "algerian", font_size = 30, bgcolor = mudorange, height = 88, width = 88)
 HowMany = ButtonClass.Button("WINNER!", white, font = "algerian", font_size = 70)
 MainMenu = ButtonClass.Button("Main Menu", black, font = "algerian", font_size = 30, bgcolor = weirdbrown, height = 100, width = 220)
@@ -106,7 +106,8 @@ def endscreen():
     player1.draw(1000,300,config.setDisplay)
     MainMenu.draw(1000,415,config.setDisplay)
     player2.draw(1000,530,config.setDisplay)
-    #player3.draw(1000,415,config.setDisplay)
+    player3.text = config.winner
+    player3.draw(500,600,config.setDisplay)
     #player4.draw(1115,415,config.setDisplay)
     
     #Graphics_game.draw_socialmedia((1200,800))

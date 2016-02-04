@@ -12,6 +12,7 @@ def EndTurn():
     GiveMoney()
     config.TurnTick = 0
     if config.Playerlist[config.PlayerIndex].money >= 50000:
+       config.winner = config.Playerlist[config.PlayerIndex].name
        config.window="terminationmenu"
     config.PlayerIndex +=1
     print (str(config.PlayerIndex) + "'s turn has ended")

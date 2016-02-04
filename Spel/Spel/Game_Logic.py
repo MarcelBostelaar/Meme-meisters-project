@@ -144,16 +144,24 @@ def move_unit(unit, pos_current, pos_target):
             return True
         return False
     if config.mapArray[pos_target[0]][pos_target[1]].biome != "w" and unit == "Boat":
-        if len(config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops) == 0:
-            return False
-        x=0
-        for i in config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops:
-            if len(config.mapArray[pos_target[0]][pos_target[1]].troops) <3:
-                config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
-                config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops.pop(x)
-                config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
-            x+=1
-        return True
+        if config.mapArray[pos_current[0]][pos_current[1]].troops[0].Name == "Boat":
+            if len(config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops) == 0:
+                return False
+            y = 0
+            x = 0
+            for i in config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops:
+                if y == 0:
+                    config.Selectedunits = []
+                if len(config.mapArray[pos_target[0]][pos_target[1]].troops) <3:
+                    config.mapArray[pos_target[0]][pos_target[1]].troops.append(i)
+                    config.Selectedunits.append(i)
+                    config.mapArray[pos_current[0]][pos_current[1]].troops[0].troops.pop(x)
+                    config.mapArray[pos_target[0]][pos_target[1]].owner = config.mapArray[pos_current[0]][pos_current[1]].owner
+                
+                y+=1
+                x+=1
+            config.Selectedunits = []
+            return True
     if config.mapArray[pos_target[0]][pos_target[1]].building != None:
         return False
     x=0

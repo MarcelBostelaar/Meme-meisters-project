@@ -3,7 +3,7 @@ import pygame
 
 window = "MainMenu"
 debug=False
-music = True
+music = False
 
 gamename = "Frequency"
 window_height = 1000
@@ -42,6 +42,7 @@ Selectedunits = []
 selectedtroop = 0
 unit = ""
 memetick = 0
+winner = ""
 
 
 isattacking = False
