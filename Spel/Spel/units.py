@@ -1,5 +1,7 @@
 ﻿#temporary class values - might be changed depending on implementation method.
 
+iiiiiii = 1 #neccecary to fix an inclusion error dont ask why
+
 class Unit:
     def __init__(self):
         self.IsAlive = True
